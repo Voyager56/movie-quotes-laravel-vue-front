@@ -1,11 +1,13 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import NavBar from "../components/NavBar.vue";
 import EmailSent from "../components/EmailSent.vue";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
 import LoginModal from "../components/LoginModal.vue";
 import RegistrationModal from "../components/RegistrationModal.vue";
+import { useRoute } from "vue-router";
+
 
 
 const dropDown = ref(false);
@@ -14,6 +16,17 @@ const loginModal = ref(false);
 const emailSent = ref(false);
 const store = userStore();
 const { userErrors } = storeToRefs(store);
+const route = useRoute();
+
+
+
+onMounted(() => {
+  const token = route.fullPath.split("token=")[1];
+  if (token) {
+    localStorage.token = token;
+    window.location.href = "/main/feed";
+  }
+});
 
 function closeDropDown() {
   dropDown.value = false;

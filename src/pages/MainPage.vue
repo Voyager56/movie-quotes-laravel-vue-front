@@ -31,9 +31,9 @@ function closeLanguageDropdown() {
 
 function logOut() {
     instance.post("api/logout").then(() => {
-        document.cookie = "token" + "=; Expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+        localStorage.token = null;
         store.setUser(null)
-        console.log(document.cookie)
+        console.log(localStorage.token)
         router.go("/");
     }).catch(e => console.log(e))
 }
@@ -61,9 +61,9 @@ function logOut() {
             <button @click="logOut" class="py-2 px-3 text-white border-white border-[1px] rounded-lg ">Log Out</button>
         </div>
     </div>
-    <div class="bg-gradient-to-r from-[#181623] to-[#0D0B14] h-[100vh] pt-10 pl-10 text-white">
+    <div class="bg-gradient-to-r from-[#181623] to-[#0D0B14]  pt-10 pl-10 text-white flex">
         <!-- sidebar -->
-        <div class="w-[20rem] flex flex-col justify-center">
+        <div class="w-[20rem] flex flex-col align-center h-[100vh]">
             <div class="flex  items-center">
                 <img :src="user.value.photo" alt="" class="rounded-full w-[50px] h-[50px] "
                     :class="url === 'profile' ? 'border-[2px] border-red-500' : ''">

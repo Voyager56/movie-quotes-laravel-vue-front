@@ -7,7 +7,7 @@ const instance = axios.create({
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
     "X-Requested-With": "XMLHttpRequest",
-    Authorization: "Bearer " + document.cookie.split("=")[1],
+    Authorization: "Bearer " + localStorage.token,
   },
 });
 

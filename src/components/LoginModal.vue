@@ -22,8 +22,8 @@ function handleSubmit(values) {
     userErrors.value = {};
     instance.post("/api/login", values).then((res) => {
         if (res.data.status === "success") {
-            document.cookie = "token" + "=;  Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-            document.cookie = "token=" + res.data.token;
+            localStorage.token = "";
+            localStorage.token = res.data.token;
             console.log(res.data.user);
             user.value = res.data.user;
             window.location.href = "/main/feed";
@@ -47,7 +47,7 @@ onClickOutside(modalRef, () => {
 const googleCallback = () => {
     instance.get("/auth/google/redirect").then(
         (response) => {
-            console.log(response);
+            window.location.href = response.data.url
         }
     )
 }

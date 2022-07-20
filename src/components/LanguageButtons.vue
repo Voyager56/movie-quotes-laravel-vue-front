@@ -13,7 +13,11 @@ const dropDownRef = ref(null);
 const updateLanguage = async (lang) => {
     const locale = lang === "Eng" ? "en" : "ka";
     language.value = lang;
-    await instance.get(`/api/locale/${locale}`);
+    await instance.get(`/api/locale/${locale}`, {
+        params: {
+            lang: locale
+        }
+    });
     props.closeDropDown();
 }
 
@@ -35,7 +39,7 @@ const toggle = () => {
 </script>
 
 <template>
-    <div class="flex  items-center relative cursor-pointer" @click="toggle">
+    <div class="flex items-center relative cursor-pointer z-10" @click="toggle">
         <button ref="dropDownRef" class="text-white">
             {{ language }}
         </button>

@@ -44,7 +44,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     instance
       .post("http://127.0.0.1:8000/api/me", {
-        Authorization: `Bearer ${document.cookie.split("=")[1]}`,
+        Authorization: `Bearer ${localStorage.token}`,
       })
       .then((res) => {
         store.setUser(res.data.user);
