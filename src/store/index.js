@@ -5,9 +5,17 @@ const userStore = defineStore("userStore", {
   state: () => ({
     user: ref({}),
     userErrors: ref({}),
+    language: ref("Eng"),
   }),
   getters: {},
-  actions: {},
+  actions: {
+    changeLanguage(lang) {
+      this.language.value = lang;
+    },
+    setUser(user) {
+      this.user.value = user;
+    },
+  },
 });
 
 export default userStore;

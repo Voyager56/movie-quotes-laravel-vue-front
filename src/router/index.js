@@ -1,4 +1,5 @@
 import LandingPage from "../pages/LandingPage.vue";
+import MainPage from "../pages/MainPage.vue";
 import EmailVerified from "../components/EmailVerified.vue";
 import EmailSent from "../components/EmailSent.vue";
 import { createRouter, createWebHistory } from "vue-router";
@@ -23,32 +24,31 @@ const router = createRouter({
       ],
     },
     {
-      path: "/feed",
+      path: "/main",
+      component: MainPage,
       meta: { requiresAuth: true },
+      children: [],
     },
   ],
 });
 
 router.beforeEach((to, from, next) => {
+  const store = userStore();
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     instance
       .post("http://127.0.0.1:8000/api/me", {
         Authorization: `Bearer ${document.cookie.split("=")[1]}`,
       })
       .then((res) => {
-        if (res.data.status === "success") {
-          userStore.user = res.data.user;
-          if (userStore.user.email_verified_at) {
-            next();
-          } else {
-            next("/verify");
-          }
+        store.setUser(res.data.user);
+        if (res.data.user.email_verified_at) {
+          next();
         } else {
-          next("/");
+          next("/verified");
         }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        next("/");
       });
   } else {
     next();

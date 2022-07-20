@@ -7,5 +7,5 @@ import { createPinia } from "pinia";
 import "aos/dist/aos.css";
 import router from "./router";
 
-const app = createApp(App).use(createPinia()).use(router);
+const app = createApp(App).use(router).use(createPinia());
 app.mount("#app");

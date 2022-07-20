@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import instance from "../config/axios/index"
@@ -17,11 +17,6 @@ const props = defineProps({
     closeModal: Function,
     epenEmailSent: Function,
 });
-
-onMounted(() => {
-    console.log(instance);
-})
-
 
 async function handleSubmit(data) {
     loading.value = true;

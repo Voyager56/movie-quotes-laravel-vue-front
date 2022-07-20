@@ -12,7 +12,6 @@ const dropDown = ref(false);
 const registrationModal = ref(false);
 const loginModal = ref(false);
 const emailSent = ref(false);
-const lang = ref("Eng");
 const store = userStore();
 const { userErrors } = storeToRefs(store);
 
@@ -38,10 +37,6 @@ function toggleLogin() {
 function toggleDropDown() {
   dropDown.value = !dropDown.value;
 }
-function changeLanguage(langueage) {
-  lang.value = langueage;
-  dropDown.value = false;
-}
 function toggleEmailSent() {
   emailSent.value = true;
 }
@@ -52,8 +47,8 @@ function toggleEmailSent() {
 
 
   <header class="bg-black text-white h-[80vh] relative">
-    <NavBar :dropDown="dropDown" :lang="lang" :toggleDropDown="toggleDropDown" :changeLanguage="changeLanguage"
-      :toggleRegistration="toggleRegistration" :toggleLogin="toggleLogin" :closeDropDown="closeDropDown" />
+    <NavBar :dropDown="dropDown" :toggleDropDown="toggleDropDown" :toggleRegistration="toggleRegistration"
+      :toggleLogin="toggleLogin" :closeDropDown="closeDropDown" />
     <div class="absolute">
       <img src="../assets/images/landingpage/topshadow.png" class="absolute w-[100vw] h-[300px]" alt="">
       <img src="../assets/images/landingpage/leftshadow.png" class="absolute h-[1200px] w-[500px]" alt="">

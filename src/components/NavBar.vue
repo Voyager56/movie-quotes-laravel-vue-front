@@ -1,49 +1,21 @@
 <script setup>
-import { ref } from "vue";
-import { onClickOutside } from "@vueuse/core";
-import instance from "../config/axios/index"
+import LanguageButtons from "./LanguageButtons.vue";
 
-const dropDownRef = ref(null);
-
-
-const props = defineProps({
+defineProps({
   toggleDropDown: Function,
-  changeLanguage: Function,
   toggleRegistration: Function,
   toggleLogin: Function,
   closeDropDown: Function,
-  lang: String,
   dropDown: Boolean,
 });
-const updateLanguage = async (lang) => {
-  const locale = lang === "Eng" ? "en" : "ka";
-  props.changeLanguage(lang);
-  await instance.get(`/api/locale/${locale}`);
-}
 
-onClickOutside(dropDownRef, () => {
-  props.closeDropDown();
-});
 </script>
 
 <template>
   <div class="flex justify-between py-5 px-10">
     <p class="text-[#DDCCAA] text-2xl">MOVIE QUOTES</p>
     <div class="flex justify-evenly w-[400px] items-center">
-      <div class="flex relative">
-        <button ref="dropDownRef" @click="toggleDropDown" class="text-white">
-          {{ lang }}
-        </button>
-        <div class="absolute bg-red-500 top-[30px] left-[-40px] h-[100px] flex flex-col justify-evenly px-5 rounded-xl"
-          :class="{ hidden: !dropDown }">
-          <button class="dropdown-item" @click="updateLanguage('Eng')">
-            English
-          </button>
-          <button class="dropdown-item" @click="updateLanguage('Geo')">
-            ქართული
-          </button>
-        </div>
-      </div>
+      <LanguageButtons :dropDown="dropDown" :toggleDropDown="toggleDropDown" :closeDropDown="closeDropDown" />
       <button @click="toggleRegistration" class="bg-red-500 py-2 px-4 rounded-md">Sign Up</button>
       <button @click="toggleLogin" class="border border-1-white py-2 px-4 rounded-md">Log In</button>
     </div>
