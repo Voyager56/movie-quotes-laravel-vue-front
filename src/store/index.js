@@ -1,13 +1,13 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
+import { ref } from "vue";
 
-export const useCounterStore = defineStore('counter', {
-  state: () => ({ count: 0 }),
-  getters: {
-    double: state => state.count * 2,
-  },
-  actions: {
-    increment() {
-      this.count++
-    },
-  },
-})
+const userStore = defineStore("userStore", {
+  state: () => ({
+    user: ref({}),
+    userErrors: ref({}),
+  }),
+  getters: {},
+  actions: {},
+});
+
+export default userStore;
