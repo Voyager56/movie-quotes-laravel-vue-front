@@ -2,6 +2,7 @@ import LandingPage from "../pages/LandingPage.vue";
 import MainPage from "../pages/MainPage.vue";
 import EmailVerified from "../components/EmailVerified.vue";
 import EmailSent from "../components/EmailSent.vue";
+import FeedComponent from "../components/FeedComponent.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import instance from "../config/axios/index";
 import userStore from "../store/index";
@@ -27,13 +28,19 @@ const router = createRouter({
       path: "/main",
       component: MainPage,
       meta: { requiresAuth: true },
-      children: [],
+      children: [
+        {
+          path: "/main/feed",
+          component: FeedComponent,
+        },
+      ],
     },
   ],
 });
 
 router.beforeEach((to, from, next) => {
   const store = userStore();
+  if (to.path === "/main") next("/main/feed");
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     instance
       .post("http://127.0.0.1:8000/api/me", {

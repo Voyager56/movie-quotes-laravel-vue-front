@@ -22,9 +22,11 @@ function handleSubmit(values) {
     userErrors.value = {};
     instance.post("/api/login", values).then((res) => {
         if (res.data.status === "success") {
+            document.cookie = "token" + "=;  Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
             document.cookie = "token=" + res.data.token;
+            console.log(res.data.user);
             user.value = res.data.user;
-            window.location.href = "/feed";
+            window.location.href = "/main/feed";
             props.closeModal();
 
         }

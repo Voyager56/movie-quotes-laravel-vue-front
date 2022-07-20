@@ -14,7 +14,7 @@ const router = useRouter();
 
 onMounted(() => {
     const route = useRoute();
-    url.value = route.path.split('main/');
+    url.value = route.path.split('/main/')[1];
 });
 
 const store = userStore();
@@ -31,8 +31,9 @@ function closeLanguageDropdown() {
 
 function logOut() {
     instance.post("api/logout").then(() => {
-        document.cookie = "token" + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+        document.cookie = "token" + "=; Expires=Thu, 01 Jan 1970 00:00:00 GMT;";
         store.setUser(null)
+        console.log(document.cookie)
         router.go("/");
     }).catch(e => console.log(e))
 }
