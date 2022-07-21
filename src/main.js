@@ -6,6 +6,21 @@ import "./config/vee-validate/messages";
 import { createPinia } from "pinia";
 import "aos/dist/aos.css";
 import router from "./router";
+import Pusher from "pusher-js";
+import Echo from "laravel-echo";
+
+window.Pusher = Pusher;
+
+window.Echo = new Echo({
+  broadcaster: "pusher",
+  key: "85f4b4e04d72b31622a3",
+  cluster: "ap2",
+  encrypted: true,
+});
+
+window.Echo.channel("notification").listen("NotificationUpdate", (e) => {
+  console.log(e, "order");
+});
 
 const app = createApp(App).use(router).use(createPinia());
 app.mount("#app");

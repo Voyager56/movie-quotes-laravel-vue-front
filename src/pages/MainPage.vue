@@ -9,8 +9,11 @@ import { storeToRefs } from 'pinia';
 import { useRoute, useRouter } from 'vue-router';
 import instance from "../config/axios/index"
 
+
 const url = ref('feed');
 const router = useRouter();
+
+
 
 onMounted(() => {
     const route = useRoute();
@@ -20,6 +23,12 @@ onMounted(() => {
 const store = userStore();
 const { user } = storeToRefs(store);
 const langDropDown = ref(false);
+const notificationModal = ref(true);
+
+
+function toggle() {
+    notificationModal.value = !notificationModal.value;
+}
 
 function toggleLanguageDropdown() {
     langDropDown.value = true
@@ -38,8 +47,6 @@ function logOut() {
     }).catch(e => console.log(e))
 }
 
-
-
 </script>
 
 
@@ -49,12 +56,24 @@ function logOut() {
     <div class="bg-[#22203033]/100 h-[5rem] flex items-center justify-between px-0 md:px-20">
         <a href="/main/feed" class="text-[#DDCCAA] text-2xl">MOVIE QUOTES</a>
         <div class=" flex justify-between w-[300px] items-center">
-            <div class="relative cursor-pointer">
-                <IconBell />
-                <h3
-                    class=" bg-red-500 rounded-full p-4 w-3 h-3 text-white absolute top-[-15px] right-[-15px] flex items-center justify-center">
-                    3
-                </h3>
+            <div class="relative">
+                <button @click="toggle" class="relative">
+                    <IconBell />
+                    <h3
+                        class=" bg-red-500 rounded-full p-4 w-3 h-3 text-white absolute top-[-15px] right-[-15px] flex items-center justify-center">
+                        3
+                    </h3>
+                </button>
+                <div
+                    :class="notificationModal ? `bg-[#22203033]/70 left-0 right-0 top-[5rem] bottom-0 absolute z-10 backdrop-blur-sm` : ''">
+                    <div class=" fixed bg-[#000000] text-white right-[100px] top-[100px] h-[100px] w-[500px] flex flex-col justify-evenly items-start px-5 rounded-xl"
+                        :class="{ hidden: !notificationModal }">
+                        <div class="flex justify-between w-[100%] ">
+                            <p class="text-2xl">Notifications</p>
+                            <button class="underline">Mark as all read</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <LanguageButtons :dropDown="langDropDown" :toggleDropDown="toggleLanguageDropdown"
                 :closeDropDown="closeLanguageDropdown" />

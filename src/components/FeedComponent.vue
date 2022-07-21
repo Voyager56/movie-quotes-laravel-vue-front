@@ -17,6 +17,29 @@
                     <p> - {{ quote.director }}</p>
                 </div>
                 <img :src="quote.thumbnail" alt="">
+                <div class="py-5">
+                    <div class="flex border-b-2 border-white/20 pb-5">
+                        <p>Comments:</p>
+                        <p>{{ quote.commentCount }}</p>
+                    </div>
+                </div>
+                <div v-for="comment in comments" :key="comment.comment">
+                    <div v-if="comment.quoteId === quote.id" class="mt-2 flex">
+                        <div class="flex w-full">
+                            <img :src="comment.authorPhoto" alt="author-photo" class="w-[50px] h-[50px] rounded-full">
+                            <div class="flex flex-col ml-5 w-full">
+                                <h3 class="text-left pt-3">{{ comment.authorUsername }}</h3>
+                                <p class="py-5 border-b-2 w-full text-left">{{ comment.comment }}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-5 flex">
+                    <img :src="user.value.photo" alt="user-photo" class="w-10 h-10 rounded-full mr-5">
+                    <input type="text" @keyup.enter="postComment($event, quote.id)"
+                        class="bg-[#24222F] w-full rounded-xl pl-5" placeholder="Write a comment">
+                </div>
             </div>
         </div>
         <div ref="element" class="absolute right-0 bottom-0"></div>
@@ -32,7 +55,12 @@ import userStore from "../store/index";
 import { storeToRefs } from 'pinia';
 
 const store = userStore();
-const { language } = storeToRefs(store);
+const { language, user } = storeToRefs(store);
+const quotes = ref([])
+const comments = ref([])
+const element = ref(null);
+const page = ref();
+const targetIsVisible = useElementVisibility(element);
 
 onMounted(() => {
     instance.get('/api/quotes').then(res => {
@@ -41,12 +69,22 @@ onMounted(() => {
     }).catch(err => {
         console.log(err);
     })
+
+    instance.get('/api/comments').then(res => {
+        comments.value = [...comments.value, ...res.data]
+    }).catch(err => {
+        console.log(err);
+    })
 })
 
-const quotes = ref(null)
-const element = ref(null);
-const page = ref(1);
-const targetIsVisible = useElementVisibility(element);
+
+window.Echo.channel('commentUpdate').listen('CommentNotification', ({ data }) => {
+    console.log(data);
+    comments.value = [...comments.value, data.commentData];
+    // replace existing quote from quote on data and keep the rest of the quotes
+    quotes.value[data.quote.id] = data.quoteData;
+
+})
 
 watch(language, () => {
     const locale = language.value === "Eng" ? "en" : "ka";
@@ -66,8 +104,10 @@ watch(language, () => {
 });
 
 watch(targetIsVisible, () => {
-    console.log(targetIsVisible);
-    console.log(page.value);
+    // refreshing in firefox doesn't pull you up to the top all the way and target was visibble on the load of the page
+    // initiating two api calls on the same page and fetching same data twice
+    // this is a workaround
+    page.value = page.value ? page.value + 1 : 2;
     instance.get('api/quotes', {
         params: {
             page: page.value
@@ -77,4 +117,22 @@ watch(targetIsVisible, () => {
         page.value += res.data.length > 0 ? 1 : 0;
     })
 })
+
+function postComment(e, id) {
+    e.preventDefault();
+    const comment = e.target.value;
+    e.target.value = "";
+    if (comment) {
+        instance.post(`/api/comment/${id}`, {
+            userId: user.value.value.id,
+            comment: comment,
+        }).then(res => {
+            console.log(res.data);
+            e.target.value = '';
+        }).catch(err => {
+            console.log(err);
+        }
+        )
+    }
+}
 </script>
