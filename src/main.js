@@ -18,9 +18,5 @@ window.Echo = new Echo({
   encrypted: true,
 });
 
-window.Echo.channel("notification").listen("NotificationUpdate", (e) => {
-  console.log(e, "order");
-});
-
 const app = createApp(App).use(router).use(createPinia());
 app.mount("#app");
