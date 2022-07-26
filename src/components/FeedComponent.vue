@@ -1,12 +1,43 @@
 <template>
   <div class="relative">
-    <div class="w-[80rem] flex flex-col justify-center">
+    <div class="w-[80rem] flex flex-col justify-center text-left">
+      <div class="flex items-center">
+        <div
+          ref="writeQuoteDiv"
+          class="flex cursor-pointer relative items-center w-[45%] bg-[#24222F] rounded-md p-3"
+          @click="openWriteQuoteModal"
+        >
+          <IconWriteMovie />
+          <p class="ml-5">Write new quote</p>
+        </div>
+        <div
+          ref="searchRef"
+          class="h-[30px] border-b-2 border-gray-300 flex mx-3 cursor-pointer"
+          @click="openSearch"
+        >
+          <IconSearch />
+          <div v-if="search" class="w-full">
+            <input
+              type="text"
+              placeholder="Enter @ to search movies, Enter # to search quotes"
+              class="bg-[#22203033]/100 px-5 w-full"
+              v-on:keyup.enter="searchDB"
+            />
+          </div>
+          <p v-else class="pl-5">Search By</p>
+        </div>
+      </div>
+      <AddMovie
+        :modal="writeQuoteModal"
+        :movies="movies"
+        :closeModal="closeWriteQuoteModal"
+      />
       <div v-if="!quotes">
         <IconLoading />
       </div>
       <div
-        v-else
         v-for="quote in quotes"
+        v-else
         :key="quote.quote"
         class="bg-[#11101A] w-[50rem] flex flex-col self-start pt-5 px-10 my-10"
       >
@@ -22,7 +53,7 @@
           </div>
         </div>
         <div class="flex py-5">
-          <p>" {{ quote.quote }} "</p>
+          <p class="max-w-[600px]">" {{ quote.quote }} "</p>
           <p>- {{ quote.director }}</p>
         </div>
         <img :src="quote.thumbnail" alt="" />
@@ -36,7 +67,10 @@
             <button @click="likeQuote($event, quote.id)">
               <IconLike
                 :color="
-                  quote.userLikes.some((like) => like.quote_id === quote.id)
+                  quote.userLikes.some(
+                    (like) =>
+                      like.quote_id == quote.id && like.user_id == user.value.id
+                  )
                     ? 'red'
                     : 'white'
                 "
@@ -69,26 +103,29 @@
           />
           <input
             type="text"
-            @keyup.enter="addComment($event, quote.id)"
             class="bg-[#24222F] w-full rounded-xl pl-5"
             placeholder="Write a comment"
+            @keyup.enter="addComment($event, quote.id)"
           />
         </div>
       </div>
     </div>
-    <div ref="element" class="absolute right-0 bottom-0"></div>
+    <div ref="element" class="absolute right-0 left-0 bottom-0"></div>
   </div>
 </template>
 
 <script setup>
 import instance from "../config/axios/index";
 import { onMounted, ref, watch } from "vue";
-import { useElementVisibility } from "@vueuse/core";
+import { onClickOutside, useElementVisibility } from "@vueuse/core";
 import IconLoading from "./icons/IconLoading.vue";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
 import IconComment from "./icons/IconComment.vue";
 import IconLike from "./icons/IconLike.vue";
+import IconWriteMovie from "./icons/IconWriteMovie.vue";
+import IconSearch from "./icons/IconSearch.vue";
+import AddMovie from "./AddMovie.vue";
 
 const store = userStore();
 const { language, user } = storeToRefs(store);
@@ -96,8 +133,12 @@ const quotes = ref([]);
 const comments = ref([]);
 const element = ref(null);
 const page = ref();
-const shellComment = ref({});
 const targetIsVisible = useElementVisibility(element);
+const writeQuoteDiv = ref(null);
+const writeQuoteModal = ref(false);
+const search = ref(false);
+const searchRef = ref(null);
+const movies = ref([]);
 
 onMounted(() => {
   instance
@@ -118,43 +159,89 @@ onMounted(() => {
     .catch((err) => {
       console.log(err);
     });
+
+  instance
+    .get("api/movies")
+    .then((res) => {
+      console.log(res.data);
+      movies.value = res.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
+function openSearch() {
+  search.value = true;
+  writeQuoteDiv.value.className =
+    "flex cursor-pointer relative items-center w-[20%] bg-[#24222F] rounded-md p-3";
+  searchRef.value.className =
+    "w-[45%] h-[30px] border-b-2 border-gray-300 flex mx-3 cursor-pointer";
+}
+
+onClickOutside(searchRef, () => {
+  search.value = false;
+  writeQuoteDiv.value.className =
+    "flex cursor-pointer relative items-center w-[45%] bg-[#24222F] rounded-md p-3";
+  searchRef.value.className =
+    "h-[30px] border-b-2 border-gray-300 flex mx-3 cursor-pointer";
+});
+
+function openWriteQuoteModal() {
+  writeQuoteModal.value = true;
+}
+
+function closeWriteQuoteModal() {
+  writeQuoteModal.value = false;
+}
+
 window.Echo.channel("QuotesChannel")
+  .listen("LikeEvent", ({ data }) => {
+    quotes.value.forEach((quote) => {
+      if (quote.id === data.like.quote_id) {
+        quote.likes = quote.likes + 1;
+        quote.userLikes = [...quote.userLikes, data.like];
+      }
+    });
+  })
+  .listen("RemoveLikeEvent", ({ data }) => {
+    quotes.value.forEach((quote) => {
+      if (quote.id == data.like.quote_id) {
+        quote.likes = quote.likes - 1;
+        quote.userLikes = quote.userLikes.filter(
+          (like) => like.user_id != data.like.user_id
+        );
+      }
+    });
+  })
   .listen("CommentEvent", ({ data }) => {
     comments.value.push(data.commentData);
     quotes.value.find(
       (quote) => quote.id === data.commentData.quoteId
     ).commentCount = data.commentCount;
-    shellComment.value = data.commentData;
   })
-  .listen("LikeEvent", ({ data }) => {});
+  .listen("quotesUpdate", ({ data }) => {
+    quotes.value = [data, ...quotes.value];
+  });
 
-watch(
-  language,
-  () => {
-    const locale = language.value === "Eng" ? "en" : "ka";
-    page.value = 1;
-    console.log("language changed");
-    instance
-      .get("/api/quotes", {
-        params: {
-          lang: locale,
-        },
-      })
-      .then((res) => {
-        quotes.value = res.data;
-        page.value += 1;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  },
-
-  {
-    immediate: true,
-  }
-);
+watch(language, () => {
+  const locale = language.value === "Eng" ? "en" : "ka";
+  page.value = 1;
+  console.log("language changed");
+  instance
+    .get("/api/quotes", {
+      params: {
+        lang: locale,
+      },
+    })
+    .then((res) => {
+      quotes.value = res.data;
+      page.value += 1;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 watch(targetIsVisible, () => {
   // refreshing in firefox doesn't pull you up to the top all the way and target was visibble on the load of the page
@@ -192,14 +279,47 @@ function addComment(e, id) {
   }
 }
 function likeQuote(e, id) {
-  e.preventDefault();
   instance
     .post(`/api/likes/${id}`)
     .then(() => {
-      quotes.value.find((quote) => quote.id === id).likeCount += 1;
+      // quotes.value.find((quote) => quote.id === id).likeCount += 1;
     })
     .catch((err) => {
       console.log(err);
     });
+}
+
+function searchDB(e) {
+  const search = e.target.value;
+  if (search.startsWith("#")) {
+    instance
+      .get("/api/quotes", {
+        params: {
+          search: search.substring(1),
+        },
+      })
+      .then((res) => {
+        quotes.value = res.data;
+        page.value += 1;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  if (search.startsWith("@")) {
+    instance
+      .get("/api/movies/search", {
+        params: {
+          search: search.substring(1),
+        },
+      })
+      .then((res) => {
+        quotes.value = res.data;
+        page.value += 1;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 </script>

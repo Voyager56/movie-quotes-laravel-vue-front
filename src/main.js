@@ -12,6 +12,12 @@ import Echo from "laravel-echo";
 window.Pusher = Pusher;
 
 window.Echo = new Echo({
+  authEndpoint: "http://127.0.0.1:8000/broadcasting/auth",
+  auth: {
+    headers: {
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+  },
   broadcaster: "pusher",
   key: "85f4b4e04d72b31622a3",
   cluster: "ap2",

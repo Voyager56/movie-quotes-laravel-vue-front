@@ -5,6 +5,7 @@ import userStore from "../store/index";
 import { onClickOutside } from "@vueuse/core";
 import { ref } from "vue";
 import IconArrow from "./icons/IconArrow.vue";
+import { setLocale } from "@vee-validate/i18n";
 
 const store = userStore();
 const { language } = storeToRefs(store);
@@ -12,6 +13,7 @@ const dropDownRef = ref(null);
 
 const updateLanguage = async (lang) => {
   const locale = lang === "Eng" ? "en" : "ka";
+  setLocale(locale);
   language.value = lang;
   await instance.get(`/api/locale/${locale}`, {
     params: {

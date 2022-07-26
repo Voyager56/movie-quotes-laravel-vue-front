@@ -48,7 +48,7 @@ onClickOutside(modalRef, () => {
 
 const googleCallback = () => {
   instance.get("/auth/google/redirect").then((response) => {
-    console.log(response);
+    window.location.href = response.data.url;
   });
 };
 </script>
@@ -123,7 +123,7 @@ const googleCallback = () => {
         </div>
         <div class="flex justify-center flex-col items-center py-3">
           <div class="flex w-[300px]">
-            <label class="text-left" for="password">Password}</label>
+            <label class="text-left" for="password">Password</label>
             <p class="text-red-400">*</p>
           </div>
           <Field
