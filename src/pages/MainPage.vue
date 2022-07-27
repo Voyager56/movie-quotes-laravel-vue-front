@@ -129,9 +129,9 @@ function logOut() {
               :class="{ hidden: !notificationModal }"
             >
               <div class="flex justify-between w-[100%]">
-                <p class="text-2xl">Notifications</p>
+                <p class="text-2xl">{{ $t("notifications") }}</p>
                 <button class="underline" @click="markAllNotificationsAsRead">
-                  Mark as all read
+                  {{ $t("mark_read") }}
                 </button>
               </div>
               <div
@@ -152,14 +152,14 @@ function logOut() {
                     </p>
                     <div v-if="notification.notification.type === `comment`">
                       <IconCommentNotification />
-                      <p>Commented to your movie quote</p>
+                      <p>{{ $t("commented") }}</p>
                     </div>
                     <div
                       v-if="notification.notification.type === `like`"
                       class="flex py-2"
                     >
                       <IconLikeNotification />
-                      <p class="pl-2">Reacted to your quote</p>
+                      <p class="pl-2">{{ $t("liked") }}</p>
                     </div>
                   </div>
                 </div>
@@ -187,7 +187,7 @@ function logOut() {
           @click="logOut"
           class="py-2 px-3 text-white border-white border-[1px] rounded-lg"
         >
-          Log Out
+          {{ $t("log_out") }}
         </button>
       </div>
     </div>
@@ -205,7 +205,7 @@ function logOut() {
           />
           <div class="pl-5 flex flex-col items-start">
             <h2>{{ user.value.username }}</h2>
-            <a href="edit">Edit your profile</a>
+            <a href="edit">{{ $t("edit_profile") }}</a>
           </div>
         </div>
         <a
@@ -213,14 +213,14 @@ function logOut() {
           class="flex justify-between items-center pt-10 w-[150px]"
         >
           <IconHome :color="url === 'feed' ? 'red' : 'white'" />
-          <p class="text-left w-[100px]">News Feed</p>
+          <p class="text-left w-[100px]">{{ $t("news_feed") }}</p>
         </a>
         <a
           href="/main/movies"
           class="flex justify-between items-center pt-10 w-[150px]"
         >
           <IconFilm :color="url === 'movies' ? 'red' : 'white'" />
-          <p class="text-left w-[100px]">List of movies</p>
+          <p class="text-left w-[100px]">{{ $t("movie_list") }}</p>
         </a>
       </div>
       <router-view v-slot="{ Component }">

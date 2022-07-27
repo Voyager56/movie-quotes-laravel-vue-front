@@ -2,6 +2,7 @@ import LandingPage from "../pages/LandingPage.vue";
 import MainPage from "../pages/MainPage.vue";
 import EmailVerified from "../components/EmailVerified.vue";
 import EmailSent from "../components/EmailSent.vue";
+import EditProfile from "../components/EditProfile.vue";
 import FeedComponent from "../components/FeedComponent.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import instance from "../config/axios/index";
@@ -32,6 +33,10 @@ const router = createRouter({
         {
           path: "/main/feed",
           component: FeedComponent,
+        },
+        {
+          path: "/main/edit",
+          component: EditProfile,
         },
       ],
     },

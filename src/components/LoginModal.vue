@@ -66,11 +66,11 @@ const googleCallback = () => {
       class="bg-[#222030] w-[600px] text-white flex flex-col items-center"
     >
       <Form v-slot="{ values, meta }" @submit.prevent="closeModal">
-        <h1 class="py-6 text-2xl">Log in to your account</h1>
-        <p class="text-[#6C757D]">Welcome back! Please enter your details.</p>
+        <h1 class="py-6 text-2xl">{{ $t("log_to_account") }}</h1>
+        <p class="text-[#6C757D] w-[300px]">{{ $t("welcome_back") }}</p>
         <div class="flex justify-center flex-col items-center py-3">
           <div class="flex w-[300px]">
-            <label class="text-left" for="username">Email</label>
+            <label class="text-left" for="username">{{ $t("email") }}</label>
             <p class="text-red-400">*</p>
           </div>
           <Field
@@ -96,7 +96,7 @@ const googleCallback = () => {
         </div>
         <div class="flex justify-center flex-col items-center py-3">
           <div class="flex w-[300px]">
-            <label class="text-left" for="password">Password</label>
+            <label class="text-left" for="password">{{ $t("password") }}</label>
             <p class="text-red-400">*</p>
           </div>
           <Field
@@ -123,7 +123,9 @@ const googleCallback = () => {
         <div>
           <div class="flex w-[300px] items-center">
             <Field name="remember" type="checkbox" value="true" />
-            <label class="h-[17px] ml-2" for="remember">Remember me</label>
+            <label class="h-[17px] ml-2" for="remember">{{
+              $t("remember_me")
+            }}</label>
           </div>
         </div>
         <button
@@ -132,7 +134,7 @@ const googleCallback = () => {
           class="w-[300px] p-3 bg-[#E31221] mt-3"
           @click="handleSubmit(values)"
         >
-          Log in
+          {{ $t("log_in") }}
         </button>
       </Form>
       <button
@@ -141,7 +143,7 @@ const googleCallback = () => {
         class="flex w-[300px] p-3 border border-1-white mt-3 mb-10 items-center justify-center"
       >
         <img src="../assets/logos/google.png" alt="google-logo" class="pr-3" />
-        <div>Sign in with Google</div>
+        <div>{{ $t("google_auth") }}</div>
       </button>
     </div>
   </div>

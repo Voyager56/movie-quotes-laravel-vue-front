@@ -67,11 +67,11 @@ const googleCallback = () => {
       class="bg-[#222030] w-[600px] text-white flex flex-col items-center"
     >
       <Form v-slot="{ values, meta }" @submit.prevent="closeModal">
-        <h1 class="py-6 text-2xl">Create an account</h1>
-        <p class="text-[#6C757D]">Start your journey!</p>
+        <h1 class="py-6 text-2xl">{{ $t("create_account") }}</h1>
+        <p class="text-[#6C757D]">{{ $t("start_journey") }}</p>
         <div class="flex justify-center flex-col items-center py-3">
           <div class="flex w-[300px]">
-            <label class="text-left" for="username">Name</label>
+            <label class="text-left" for="username">{{ $t("name") }}</label>
             <p class="text-red-400">*</p>
           </div>
           <Field
@@ -97,7 +97,7 @@ const googleCallback = () => {
         </div>
         <div class="flex justify-center flex-col items-center py-3">
           <div class="flex w-[300px]">
-            <label class="text-left" for="email">Email</label>
+            <label class="text-left" for="email">{{ $t("email") }}</label>
             <p class="text-red-400">*</p>
           </div>
           <Field
@@ -123,7 +123,7 @@ const googleCallback = () => {
         </div>
         <div class="flex justify-center flex-col items-center py-3">
           <div class="flex w-[300px]">
-            <label class="text-left" for="password">Password</label>
+            <label class="text-left" for="password">{{ $t("password") }}</label>
             <p class="text-red-400">*</p>
           </div>
           <Field
@@ -149,9 +149,9 @@ const googleCallback = () => {
         </div>
         <div class="flex justify-center flex-col items-center py-3">
           <div class="flex w-[300px]">
-            <label class="text-left" for="confirm password"
-              >Password Confirmation</label
-            >
+            <label class="text-left" for="confirm password">{{
+              $t("confirm_password")
+            }}</label>
             <p class="text-red-400">*</p>
           </div>
           <Field
@@ -181,7 +181,7 @@ const googleCallback = () => {
           class="w-[300px] p-3 bg-[#E31221] mt-3"
           @click="handleSubmit(values)"
         >
-          Get Started
+          {{ $t("started") }}
         </button>
       </Form>
       <button
@@ -190,7 +190,7 @@ const googleCallback = () => {
         class="flex w-[300px] p-3 border border-1-white mt-3 mb-10 items-center justify-center"
       >
         <img src="../assets/logos/google.png" alt="google-logo" class="pr-3" />
-        <div>Sign up with Google</div>
+        <div>{{ $t("google_auth") }}</div>
       </button>
     </div>
   </div>

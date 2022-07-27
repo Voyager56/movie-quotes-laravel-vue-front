@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 import router from "./router";
 import Pusher from "pusher-js";
 import Echo from "laravel-echo";
+import { i18n } from "./config/i18n/index";
 
 window.Pusher = Pusher;
 
@@ -24,5 +25,5 @@ window.Echo = new Echo({
   encrypted: true,
 });
 
-const app = createApp(App).use(router).use(createPinia());
+const app = createApp(App).use(i18n).use(router).use(createPinia());
 app.mount("#app");

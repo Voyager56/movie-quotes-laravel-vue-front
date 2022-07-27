@@ -23,13 +23,13 @@ defineProps({
         @click="toggleRegistration"
         class="bg-red-500 py-2 px-4 rounded-md"
       >
-        Sign Up
+        {{ $t("sign_up") }}
       </button>
       <button
         @click="toggleLogin"
         class="border border-1-white py-2 px-4 rounded-md"
       >
-        Log In
+        {{ $t("log_in") }}
       </button>
     </div>
   </div>
@@ -41,7 +41,7 @@ defineProps({
       @click="toggleRegistration"
       class="bg-red-500 py-2 px-4 rounded-md w-40 mt-10 hover:motion-safe:animate-bounce"
     >
-      Get Started
+      {{ $t("started") }}
     </button>
   </div>
 </template>

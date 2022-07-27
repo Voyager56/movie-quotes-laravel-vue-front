@@ -8,7 +8,7 @@
           @click="openWriteQuoteModal"
         >
           <IconWriteMovie />
-          <p class="ml-5">Write new quote</p>
+          <p class="ml-5">{{ $t("write_quote") }}</p>
         </div>
         <div
           ref="searchRef"
@@ -24,7 +24,7 @@
               v-on:keyup.enter="searchDB"
             />
           </div>
-          <p v-else class="pl-5">Search By</p>
+          <p v-else class="pl-5">{{ $t("search") }}</p>
         </div>
       </div>
       <AddMovie
@@ -53,7 +53,7 @@
           </div>
         </div>
         <div class="flex py-5">
-          <p class="max-w-[600px]">" {{ quote.quote }} "</p>
+          <p class="max-w-[600px]">" {{ quote.quote[locale] }} "</p>
           <p>- {{ quote.director }}</p>
         </div>
         <img :src="quote.thumbnail" alt="" />
@@ -121,6 +121,7 @@ import { onClickOutside, useElementVisibility } from "@vueuse/core";
 import IconLoading from "./icons/IconLoading.vue";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
+import { useI18n } from "vue-i18n";
 import IconComment from "./icons/IconComment.vue";
 import IconLike from "./icons/IconLike.vue";
 import IconWriteMovie from "./icons/IconWriteMovie.vue";
@@ -128,7 +129,8 @@ import IconSearch from "./icons/IconSearch.vue";
 import AddMovie from "./AddMovie.vue";
 
 const store = userStore();
-const { language, user } = storeToRefs(store);
+const { user } = storeToRefs(store);
+const { locale } = useI18n({ useScope: "global" });
 const quotes = ref([]);
 const comments = ref([]);
 const element = ref(null);
@@ -224,23 +226,8 @@ window.Echo.channel("QuotesChannel")
     quotes.value = [data, ...quotes.value];
   });
 
-watch(language, () => {
-  const locale = language.value === "Eng" ? "en" : "ka";
+watch(locale, () => {
   page.value = 1;
-  console.log("language changed");
-  instance
-    .get("/api/quotes", {
-      params: {
-        lang: locale,
-      },
-    })
-    .then((res) => {
-      quotes.value = res.data;
-      page.value += 1;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 });
 
 watch(targetIsVisible, () => {
