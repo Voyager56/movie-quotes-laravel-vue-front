@@ -118,14 +118,14 @@
 import instance from "../config/axios/index";
 import { onMounted, ref, watch } from "vue";
 import { onClickOutside, useElementVisibility } from "@vueuse/core";
-import IconLoading from "./icons/IconLoading.vue";
+import IconLoading from "../assets/icons/IconLoading.vue";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
 import { useI18n } from "vue-i18n";
-import IconComment from "./icons/IconComment.vue";
-import IconLike from "./icons/IconLike.vue";
-import IconWriteMovie from "./icons/IconWriteMovie.vue";
-import IconSearch from "./icons/IconSearch.vue";
+import IconComment from "../assets/icons/IconComment.vue";
+import IconLike from "../assets/icons/IconLike.vue";
+import IconWriteMovie from "../assets/icons/IconWriteMovie.vue";
+import IconSearch from "../assets/icons/IconSearch.vue";
 import AddMovie from "./AddMovie.vue";
 
 const store = userStore();

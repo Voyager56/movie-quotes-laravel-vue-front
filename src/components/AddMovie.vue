@@ -1,13 +1,13 @@
 <script setup>
-import IconPhoto from "./icons/IconPhoto.vue";
-import IconFilm from "./icons/IconFilm.vue";
-import IconArrow from "./icons/IconArrow.vue";
+import IconFilm from "../assets/icons/IconFilm.vue";
+import IconArrow from "../assets/icons/IconArrow.vue";
 import { Form, Field } from "vee-validate";
 import { ref } from "vue";
-import { useDropZone, onClickOutside } from "@vueuse/core";
+import { onClickOutside } from "@vueuse/core";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
 import instance from "../config/axios/index";
+import ImageDrop from "./ImageDrop.vue";
 
 const store = userStore();
 const { user } = storeToRefs(store);
@@ -18,11 +18,6 @@ const writeQuoteRef = ref(null);
 
 const movieDropdown = ref(false);
 const movieDropdownRef = ref(null);
-const dropImageRef = ref(null);
-
-function onDrop(file) {
-  image.value = file;
-}
 
 const props = defineProps({
   movies: {
@@ -39,7 +34,10 @@ const props = defineProps({
   },
 });
 
-useDropZone(dropImageRef, onDrop);
+function setImage(img) {
+  image.value = img;
+  console.log(image.value);
+}
 
 function chooseMovie(e, movie) {
   chosenMovie.value = movie;
@@ -64,7 +62,7 @@ function postMovie(e, values) {
   form.append("quote_ka", values.quote_ka);
   form.append("quote_en", values.quote_en);
   instance
-    .post("/api/quotes", form, {
+    .post("/api/quotes/add", form, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -120,17 +118,7 @@ function postMovie(e, values) {
             ref="dropImageRef"
             class="flex items-center bg-[#11101A] my-2 border-[#6C757D] border-[2px] px-3 py-2"
           >
-            <IconPhoto />
-            <label class="px-5" for="photo"
-              >Drag & drop your image here or</label
-            >
-            <Field
-              id="file"
-              v-model="image"
-              as="input"
-              type="file"
-              name="photo"
-            />
+            <ImageDrop :setImage="setImage" />
           </div>
           <div class="relative w-full">
             <div class="w-full pb-5 cursor-pointer">

@@ -3,7 +3,7 @@ import { onClickOutside } from "@vueuse/core";
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import userStore from "../store/index";
-import IconLoading from "./icons/IconLoading.vue";
+import IconLoading from "../assets/icons/IconLoading.vue";
 import instance from "../config/axios/index";
 
 const emailVerifiedModal = ref(null);

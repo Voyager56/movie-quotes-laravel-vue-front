@@ -10,6 +10,7 @@ const messages = {
     start_journey: "Start your journey",
     name: "Name",
     email: "Email",
+    username: "Username",
     password: "Password",
     confirm_password: "Confirm Password",
     google_auth: "Sign up with Google",
@@ -25,6 +26,9 @@ const messages = {
     movie_list: "List of movies",
     write_quote: "Write New Quote",
     search: "Search By",
+    profile: "My Profile",
+    upload_photo: "Upload new photo",
+    save_changes: "Save Changes",
   },
   ka: {
     started: "დაწყება",
@@ -35,6 +39,7 @@ const messages = {
     start_journey: "დაიწყე მოგზაურობა",
     name: "სახელი",
     email: "იმეილი",
+    username: "მომხმარებლის სახელი",
     password: "პაროლი",
     confirm_password: "პაროლის დამახსოვრება",
     google_auth: "გუგლით ავტორიზაცია",
@@ -51,6 +56,9 @@ const messages = {
     movie_list: "ფილმების სია",
     write_quote: "დაამატე ციტატა",
     search: "ძიება",
+    profile: "ჩემი პროფილი",
+    upload_photo: "ატვირთეთ ახალი ფოტო",
+    save_changes: "შეინახეთ ცვლილებები",
   },
 };
 

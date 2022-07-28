@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import instance from "../config/axios/index";
-import IconLoading from "./icons/IconLoading.vue";
+import IconLoading from "../assets/icons/IconLoading.vue";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
 

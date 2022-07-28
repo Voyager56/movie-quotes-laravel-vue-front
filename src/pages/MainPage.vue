@@ -1,17 +1,20 @@
 <script setup>
 import { ref, onMounted, watch } from "vue";
-import IconBell from "../components/icons/IconBell.vue";
 import LanguageButtons from "../components/LanguageButtons.vue";
-import IconHome from "../components/icons/IconHome.vue";
-import IconFilm from "../components/icons/IconFilm.vue";
+import IconBell from "../assets/icons/IconBell.vue";
+import IconHome from "../assets/icons/IconHome.vue";
+import IconFilm from "../assets/icons/IconFilm.vue";
+import IconCommentNotification from "../assets/icons/IconCommentNotification.vue";
+import IconLikeNotification from "../assets/icons/IconLikeNotification.vue";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
 import { useRoute, useRouter } from "vue-router";
 import instance from "../config/axios/index";
 import { onClickOutside } from "@vueuse/core";
-import IconCommentNotification from "../components/icons/IconCommentNotification.vue";
-import IconLikeNotification from "../components/icons/IconLikeNotification.vue";
 import timeDiff from "time-diff-for-humans";
+import { useI18n } from "vue-i18n";
+
+const { locale } = useI18n({ useScope: "global" });
 
 const url = ref("feed");
 const router = useRouter();
@@ -165,7 +168,12 @@ function logOut() {
                 </div>
                 <div>
                   <p>
-                    {{ timeDiff(`${notification.notification["created_at"]}`) }}
+                    {{
+                      timeDiff(
+                        `${notification.notification["created_at"]}`,
+                        locale
+                      )
+                    }}
                   </p>
                   <p
                     v-if="!notification.notification.read"
@@ -201,7 +209,7 @@ function logOut() {
             :src="user.value.photo"
             alt=""
             class="rounded-full w-[50px] h-[50px]"
-            :class="url === 'profile' ? 'border-[2px] border-red-500' : ''"
+            :class="url === 'edit' ? 'border-[2px] border-red-500' : ''"
           />
           <div class="pl-5 flex flex-col items-start">
             <h2>{{ user.value.username }}</h2>
