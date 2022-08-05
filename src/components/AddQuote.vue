@@ -36,7 +36,6 @@ const props = defineProps({
 
 function setImage(img) {
   image.value = img;
-  console.log(image.value);
 }
 
 function chooseMovie(e, movie) {
@@ -104,6 +103,7 @@ function postMovie(e, values) {
             id="quote_en"
             as="textarea"
             name="quote_en"
+            rules="required|english"
             class="bg-[#11101A] my-2 border-[#6C757D] border-[2px] px-3 py-2"
             placeholder="Start create new quote"
           ></Field>
@@ -111,6 +111,7 @@ function postMovie(e, values) {
             id="quote_ka"
             name="quote_ka"
             as="textarea"
+            rules="required|georgian"
             class="bg-[#11101A] my-2 border-[#6C757D] border-[2px] px-3 py-2"
             placeholder="ახალი ციტატა"
           ></Field>

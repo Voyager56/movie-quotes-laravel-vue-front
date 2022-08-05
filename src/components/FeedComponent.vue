@@ -27,7 +27,7 @@
           <p v-else class="pl-5">{{ $t("search") }}</p>
         </div>
       </div>
-      <AddMovie
+      <AddQuote
         :modal="writeQuoteModal"
         :movies="movies"
         :closeModal="closeWriteQuoteModal"
@@ -126,7 +126,7 @@ import IconComment from "../assets/icons/IconComment.vue";
 import IconLike from "../assets/icons/IconLike.vue";
 import IconWriteMovie from "../assets/icons/IconWriteMovie.vue";
 import IconSearch from "../assets/icons/IconSearch.vue";
-import AddMovie from "./AddMovie.vue";
+import AddQuote from "./AddQuote.vue";
 
 const store = userStore();
 const { user } = storeToRefs(store);

@@ -42,6 +42,7 @@
         </div>
         <button
           class="underline text-blue-900 self-start"
+          :disabled="user.value.oauth"
           @click="togglePasswordChange"
         >
           change password

@@ -32,7 +32,7 @@ const messages = {
   },
   ka: {
     started: "დაწყება",
-    sign_up: "რეგისტრაციაp",
+    sign_up: "რეგისტრაცია",
     log_in: "ავტორიზაცია",
     log_out: "გამოსვლა",
     create_account: "ანგარიშის შექმნა",

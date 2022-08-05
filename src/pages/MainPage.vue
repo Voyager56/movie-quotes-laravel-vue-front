@@ -213,7 +213,7 @@ function logOut() {
           />
           <div class="pl-5 flex flex-col items-start">
             <h2>{{ user.value.username }}</h2>
-            <a href="edit">{{ $t("edit_profile") }}</a>
+            <a class="text-left" href="edit">{{ $t("edit_profile") }}</a>
           </div>
         </div>
         <a
