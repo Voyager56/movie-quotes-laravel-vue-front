@@ -227,7 +227,7 @@ function logOut() {
           href="/main/movies"
           class="flex justify-between items-center pt-10 w-[150px]"
         >
-          <IconFilm :color="url === 'movies' ? 'red' : 'white'" />
+          <IconFilm :color="url.includes('movies') ? 'red' : 'white'" />
           <p class="text-left w-[100px]">{{ $t("movie_list") }}</p>
         </a>
       </div>

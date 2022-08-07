@@ -29,6 +29,11 @@ const messages = {
     profile: "My Profile",
     upload_photo: "Upload new photo",
     save_changes: "Save Changes",
+    release_date: "Release year",
+    budget: "Budget",
+    my_list: "My List Of Movies",
+    total: "Total",
+    quotes: "Quotes",
   },
   ka: {
     started: "დაწყება",
@@ -59,6 +64,11 @@ const messages = {
     profile: "ჩემი პროფილი",
     upload_photo: "ატვირთეთ ახალი ფოტო",
     save_changes: "შეინახეთ ცვლილებები",
+    release_date: "გამოშვების წელი",
+    budget: "ბიუჯეტი",
+    my_list: "ჩემი ფილმების სია",
+    total: "ჯამში",
+    quotes: "ციტატები",
   },
 };
 

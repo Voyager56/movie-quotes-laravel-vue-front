@@ -54,7 +54,7 @@
         </div>
         <div class="flex py-5">
           <p class="max-w-[600px]">" {{ quote.quote[locale] }} "</p>
-          <p>- {{ quote.director }}</p>
+          <p>- {{ quote.director[locale] }}</p>
         </div>
         <img :src="quote.thumbnail" alt="" />
         <div class="py-5 flex border-white/20 border-b-2">
@@ -222,7 +222,8 @@ window.Echo.channel("QuotesChannel")
       (quote) => quote.id === data.commentData.quoteId
     ).commentCount = data.commentCount;
   })
-  .listen("quotesUpdate", ({ data }) => {
+  .listen("PostQuote", ({ data }) => {
+    console.log(data);
     quotes.value = [data, ...quotes.value];
   });
 
@@ -268,9 +269,7 @@ function addComment(e, id) {
 function likeQuote(e, id) {
   instance
     .post(`/api/likes/${id}`)
-    .then(() => {
-      // quotes.value.find((quote) => quote.id === id).likeCount += 1;
-    })
+    .then(() => {})
     .catch((err) => {
       console.log(err);
     });

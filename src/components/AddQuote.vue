@@ -1,14 +1,16 @@
 <script setup>
 import IconFilm from "../assets/icons/IconFilm.vue";
 import IconArrow from "../assets/icons/IconArrow.vue";
-import { Form, Field } from "vee-validate";
+import { Form, Field, ErrorMessage } from "vee-validate";
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
 import instance from "../config/axios/index";
+import { useI18n } from "vue-i18n";
 import ImageDrop from "./ImageDrop.vue";
 
+const { locale } = useI18n({ useScope: "global" });
 const store = userStore();
 const { user } = storeToRefs(store);
 
@@ -81,11 +83,11 @@ function postMovie(e, values) {
   <div class="flex text-white items-center">
     <div
       v-if="modal"
-      class="bg-[#22203033]/70 fixed left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] w-[100vw] h-[100vh] max-w-[100%] z-10 backdrop-blur-sm flex justify-center items-center"
+      class="bg-[#22203033]/70 fixed left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] w-[100vw] h-[100vh] max-w-[100%] z-10 backdrop-blur-sm flex justify-center items-center overflow-scroll"
     >
       <div
         ref="writeQuoteRef"
-        class="bg-[#222030] w-[600px] text-white flex flex-col items-center rounded-md"
+        class="bg-[#222030] w-[600px] text-white h-[90%] flex flex-col items-center rounded-md"
       >
         <p class="text-3xl py-5 border-b-2 border-gray-500 w-full text-center">
           Write New Quote
@@ -98,7 +100,7 @@ function postMovie(e, values) {
           />
           <p class="ml-5">{{ user.value.username }}</p>
         </div>
-        <Form v-slot="{ values }" class="flex flex-col w-full px-[3rem]">
+        <Form v-slot="{ values, meta }" class="flex flex-col w-full px-[3rem]">
           <Field
             id="quote_en"
             as="textarea"
@@ -107,6 +109,10 @@ function postMovie(e, values) {
             class="bg-[#11101A] my-2 border-[#6C757D] border-[2px] px-3 py-2"
             placeholder="Start create new quote"
           ></Field>
+          <ErrorMessage
+            name="quote_en"
+            class="text-red-500 text-sm"
+          ></ErrorMessage>
           <Field
             id="quote_ka"
             name="quote_ka"
@@ -115,12 +121,11 @@ function postMovie(e, values) {
             class="bg-[#11101A] my-2 border-[#6C757D] border-[2px] px-3 py-2"
             placeholder="ახალი ციტატა"
           ></Field>
-          <div
-            ref="dropImageRef"
-            class="flex items-center bg-[#11101A] my-2 border-[#6C757D] border-[2px] px-3 py-2"
-          >
-            <ImageDrop :setImage="setImage" />
-          </div>
+          <ErrorMessage
+            name="quote_ka"
+            class="text-red-500 text-sm"
+          ></ErrorMessage>
+          <ImageDrop :setImage="setImage" />
           <div class="relative w-full">
             <div class="w-full pb-5 cursor-pointer">
               <div
@@ -141,8 +146,8 @@ function postMovie(e, values) {
               >
                 <div class="flex items-center">
                   <div class="px-3 flex items-center">
-                    <p class="w-[300px]">{{ chosenMovie.title.en }}</p>
-                    <p>- {{ chosenMovie.director }}</p>
+                    <p class="w-[300px]">{{ chosenMovie.title[locale] }}</p>
+                    <p>- {{ chosenMovie.director[locale] }}</p>
                   </div>
                 </div>
               </div>
@@ -157,13 +162,14 @@ function postMovie(e, values) {
                     class="flex items-center cursor-pointer"
                     @click="chooseMovie($event, movie)"
                   >
-                    <p class="w-[300px]">{{ movie.title.en }}</p>
-                    <p>- {{ movie.director }}</p>
+                    <p class="w-[300px]">{{ movie.title[locale] }}</p>
+                    <p>- {{ movie.director[locale] }}</p>
                   </div>
                 </div>
               </div>
               <button
-                class="w-full bg-[#E31221] text-white my-[2rem] py-[1rem] rounded-xl"
+                class="w-full bg-[#E31221] text-white my-[2rem] py-[1rem] rounded-xl disabled:opacity-40"
+                :disabled="!meta.valid || !image || !chosenMovie"
                 @click="postMovie($event, values)"
               >
                 POST

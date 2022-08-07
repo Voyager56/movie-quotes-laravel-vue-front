@@ -12,6 +12,7 @@
     "@bundled-es-modules/axios": "^0.27.2",
     "@vee-validate/i18n": "^4.5.11",
     "@vee-validate/rules": "^4.5.11",
+    "@vueform/multiselect": "^2.5.2",
     "@vueuse/core": "^8.7.5",
     "aos": "^2.3.4",
     "autoprefixer": "^10",
