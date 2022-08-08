@@ -52,7 +52,6 @@ const googleCallback = () => {
 </script>
 
 <template>
-  <pre class="text-white">{{ userErrors }}</pre>
   <div
     v-if="modal"
     class="fixed left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] w-[100vw] h-[100vh] max-w-[100%] z-10 backdrop-blur-sm flex justify-center items-center"

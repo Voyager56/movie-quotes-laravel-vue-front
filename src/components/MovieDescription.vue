@@ -24,8 +24,10 @@
             </div>
           </div>
           <div class="ml-3 flex flex-col items-start mt-10">
-            <p class="mt-3">Director: {{ movie.director[locale] }}</p>
-            <p class="mt-3">Budget: {{ movie.budget }}</p>
+            <p class="mt-3">
+              {{ $t("director") }}: {{ movie.director[locale] }}
+            </p>
+            <p class="mt-3">{{ $t("budget") }}: {{ movie.budget }}</p>
             <p class="mt-3">{{ movie.description[locale] }}</p>
           </div>
         </div>
@@ -41,7 +43,7 @@
           class="bg-red-500 px-2 py-2 rounded-sm flex items-center justify-between w-[120px]"
           @click="openQuoteModal"
         >
-          <IconPlus /> Add Quote
+          <IconPlus /> {{ $t("add_quote") }}
         </button>
       </div>
       <div
@@ -68,8 +70,7 @@ import { useI18n } from "vue-i18n";
 import IconLoading from "../assets/icons/IconLoading.vue";
 import IconPlus from "../assets/icons/IconPlus.vue";
 import AddQuote from "./AddQuote.vue";
-import IconComment from "../assets/icons/IconComment.vue";
-import IconLike from "../assets/icons/IconLike.vue";
+
 import QuoteCard from "./QuoteCard.vue";
 
 const { locale } = useI18n({ useScope: "global" });

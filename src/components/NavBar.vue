@@ -20,14 +20,14 @@ defineProps({
         :closeDropDown="closeDropDown"
       />
       <button
-        @click="toggleRegistration"
         class="bg-red-500 py-2 px-4 rounded-md"
+        @click="toggleRegistration"
       >
         {{ $t("sign_up") }}
       </button>
       <button
-        @click="toggleLogin"
         class="border border-1-white py-2 px-4 rounded-md"
+        @click="toggleLogin"
       >
         {{ $t("log_in") }}
       </button>
@@ -38,8 +38,8 @@ defineProps({
       Find any quote in millions of movie lines
     </h1>
     <button
-      @click="toggleRegistration"
       class="bg-red-500 py-2 px-4 rounded-md w-40 mt-10 hover:motion-safe:animate-bounce"
+      @click="toggleRegistration"
     >
       {{ $t("started") }}
     </button>

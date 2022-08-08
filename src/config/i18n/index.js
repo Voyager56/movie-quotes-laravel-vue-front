@@ -34,6 +34,9 @@ const messages = {
     my_list: "My List Of Movies",
     total: "Total",
     quotes: "Quotes",
+    director: "Director",
+    add_quote: "Add Quote",
+    view_quote: "View Quote",
   },
   ka: {
     started: "დაწყება",
@@ -69,6 +72,8 @@ const messages = {
     my_list: "ჩემი ფილმების სია",
     total: "ჯამში",
     quotes: "ციტატები",
+    add_quote: "დაამატე ციტატა",
+    view_quote: "ციტატის ნახვა",
   },
 };
 

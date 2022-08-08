@@ -5,6 +5,8 @@ import EmailSent from "../components/EmailSent.vue";
 import EditProfile from "../components/EditProfile.vue";
 import FeedComponent from "../components/FeedComponent.vue";
 import MovieList from "../components/MovieList.vue";
+import ViewQuote from "../components/ViewQuote.vue";
+import EditQuote from "../components/EditQuote.vue";
 import MovieDescription from "../components/MovieDescription.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import instance from "../config/axios/index";
@@ -47,6 +49,14 @@ const router = createRouter({
         {
           path: "/main/movies/:id",
           component: MovieDescription,
+        },
+        {
+          path: "/main/movies/quote/:id",
+          component: ViewQuote,
+        },
+        {
+          path: "/main/movies/edit/quote/:id",
+          component: EditQuote,
         },
       ],
     },

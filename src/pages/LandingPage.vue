@@ -51,7 +51,7 @@ function toggleEmailSent() {
 </script>
 
 <template>
-  <header class="bg-black text-white h-[80vh] relative">
+  <header class="bg-black text-white h-screen">
     <NavBar
       :dropDown="dropDown"
       :toggleDropDown="toggleDropDown"
@@ -59,56 +59,55 @@ function toggleEmailSent() {
       :toggleLogin="toggleLogin"
       :closeDropDown="closeDropDown"
     />
-    <div class="absolute">
-      <img
-        src="../assets/images/landingpage/topshadow.png"
-        class="absolute w-[100vw] h-[300px]"
-        alt=""
-      />
-      <img
-        src="../assets/images/landingpage/leftshadow.png"
-        class="absolute h-[1200px] w-[500px]"
-        alt=""
-      />
-      <img
-        src="../assets/images/landingpage/interstellar.png"
-        alt="interstellar"
-      />
-      <div
-        class="absolute text-white flex flex-col items-start top-[500px] left-[300px]"
-        data-aos="fade-up"
-      >
-        <p class="text-3xl">
-          — “You have to leave somethig behind to go forward”
-        </p>
-        <p class="pl-10 text-xl">Interstellar, 2014</p>
-      </div>
-    </div>
-    <div class="absolute mt-[62%]" data-aos="fade-up">
-      <img
-        src="../assets/images/landingpage/topshadow.png"
-        class="absolute w-[100vw] h-[300px]"
-        alt=""
-      />
-      <img
-        src="../assets/images/landingpage/leftshadow.png"
-        class="absolute h-[1200px] w-[500px]"
-        alt=""
-      />
-      <img
-        src="../assets/images/landingpage/interstellar.png"
-        alt="interstellar"
-      />
-      <div
-        class="absolute text-white flex flex-col items-start top-[500px] left-[300px]"
-      >
-        <p class="text-3xl">
-          — “You have to leave somethig behind to go forward”
-        </p>
-        <p class="pl-10 text-xl">Interstellar, 2014</p>
-      </div>
-    </div>
   </header>
+  <div
+    class="interstellar flex items-center justify-center h-screen pb-12 relative"
+  >
+    <div class="font-serif mx-4 p-4 text-center md:p-8">
+      <div class="bg-white font-serif text-center">
+        <div
+          class="absolute text-white flex flex-col items-start top-[500px] left-[300px]"
+        >
+          <p class="text-3xl">
+            — “You have to leave somethig behind to go forward”
+          </p>
+          <p class="pl-10 text-xl">Interstellar, 2014</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="tenembaum flex items-center justify-center h-screen w-screen relative"
+  >
+    <div class="font-serif text-center w-screen">
+      <div class="bg-white font-serif text-center">
+        <div
+          class="absolute text-white flex flex-col items-start top-[500px] left-[300px]"
+        >
+          <p class="text-3xl">
+            — “I think we’re just gonna have to be secretly in love with earch
+            other and leave it that”
+          </p>
+          <p class="pl-10 text-xl">The Royal Tenenbaums,2001</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="lotr flex items-center justify-center h-screen w-screen relative">
+    <div class="font-serif text-center w-screen">
+      <div class="bg-white font-serif text-center">
+        <div
+          class="absolute text-white flex flex-col items-start top-[500px] left-[300px]"
+        >
+          <p class="text-3xl">
+            — “Po-tay-toes! Boil 'em, mash 'em, stick 'em in a stew... Lovely
+            big golden chips with a nice piece of fried fish.”
+          </p>
+          <p class="pl-10 text-xl">The Two Towers,2002</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <RegistrationModal
     :modal="registrationModal"
@@ -121,4 +120,21 @@ function toggleEmailSent() {
   <router-view />
 </template>
 
-<style></style>
+<style>
+.interstellar {
+  background: url("src/assets/images/landingpage/interstellar.png") center
+    center no-repeat;
+  background-attachment: fixed;
+}
+.tenembaum {
+  background: url("src/assets/images/landingpage/tenembaum.png") center center
+    no-repeat;
+  background-attachment: fixed;
+}
+
+.lotr {
+  background: url("src/assets/images/landingpage/lotr.png") center center
+    no-repeat;
+  background-attachment: fixed;
+}
+</style>
