@@ -16,7 +16,13 @@ const props = defineProps({
   modal: Boolean,
   closeModal: Function,
   epenEmailSent: Function,
+  openLogin: Function,
 });
+
+function toggleLoginModal() {
+  props.openLogin();
+  props.closeModal();
+}
 
 async function handleSubmit(data) {
   loading.value = true;
@@ -185,13 +191,19 @@ const googleCallback = () => {
         </button>
       </Form>
       <button
-        @click="googleCallback"
-        style="display: flex"
         class="flex w-[300px] p-3 border border-1-white mt-3 mb-10 items-center justify-center"
+        style="display: flex"
+        @click="googleCallback"
       >
         <img src="../assets/logos/google.png" alt="google-logo" class="pr-3" />
         <div>{{ $t("google_auth") }}</div>
       </button>
+      <div class="flex mb-5">
+        Already have an account?
+        <button class="underline text-blue-600 mx-2" @click="toggleLoginModal">
+          Log In
+        </button>
+      </div>
     </div>
   </div>
 </template>

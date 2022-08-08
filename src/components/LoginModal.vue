@@ -15,7 +15,13 @@ const { userErrors, user } = storeToRefs(store);
 const props = defineProps({
   modal: Boolean,
   closeModal: Function,
+  toggleRegistration: Function,
 });
+
+function toggleRegistrationModal() {
+  props.toggleRegistration();
+  props.closeModal();
+}
 
 function handleSubmit(values) {
   loading.value = true;
@@ -56,7 +62,7 @@ const googleCallback = () => {
     v-if="modal"
     class="fixed left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] w-[100vw] h-[100vh] max-w-[100%] z-10 backdrop-blur-sm flex justify-center items-center"
   >
-    <div role="status" v-if="loading">
+    <div v-if="loading" role="status">
       <IconLoading />
     </div>
     <div
@@ -119,13 +125,16 @@ const googleCallback = () => {
             class="text-red-400 text-left w-[300px] h-[25px]"
           />
         </div>
-        <div>
-          <div class="flex w-[300px] items-center">
+        <div class="flex w-[300px] justify-between">
+          <div class="flex items-center">
             <Field name="remember" type="checkbox" value="true" />
             <label class="h-[17px] ml-2" for="remember">{{
               $t("remember_me")
             }}</label>
           </div>
+          <a href="/forgot-password" class="text-blue-600 underline"
+            >Forgot password</a
+          >
         </div>
         <button
           :disabled="!meta.valid"
@@ -137,13 +146,22 @@ const googleCallback = () => {
         </button>
       </Form>
       <button
-        @click="googleCallback"
-        style="display: flex"
         class="flex w-[300px] p-3 border border-1-white mt-3 mb-10 items-center justify-center"
+        style="display: flex"
+        @click="googleCallback"
       >
         <img src="../assets/logos/google.png" alt="google-logo" class="pr-3" />
         <div>{{ $t("google_auth") }}</div>
       </button>
+      <div class="flex mb-5">
+        Already have an account?
+        <button
+          class="text-blue-600 underline mx-3"
+          @click="toggleRegistrationModal"
+        >
+          Sign Up
+        </button>
+      </div>
     </div>
   </div>
 </template>

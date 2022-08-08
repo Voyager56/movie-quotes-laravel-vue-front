@@ -76,9 +76,7 @@ function toggleEmailSent() {
       </div>
     </div>
   </div>
-  <div
-    class="tenembaum flex items-center justify-center h-screen w-screen relative"
-  >
+  <div class="tenembaum flex items-center justify-center h-screen relative">
     <div class="font-serif text-center w-screen">
       <div class="bg-white font-serif text-center">
         <div
@@ -93,7 +91,7 @@ function toggleEmailSent() {
       </div>
     </div>
   </div>
-  <div class="lotr flex items-center justify-center h-screen w-screen relative">
+  <div class="lotr flex items-center justify-center h-screen relative">
     <div class="font-serif text-center w-screen">
       <div class="bg-white font-serif text-center">
         <div
@@ -113,8 +111,13 @@ function toggleEmailSent() {
     :modal="registrationModal"
     :closeModal="closeRegistrationModal"
     :epenEmailSent="toggleEmailSent"
+    :openLogin="toggleLogin"
   />
-  <LoginModal :modal="loginModal" :closeModal="closeLoginModal" />
+  <LoginModal
+    :modal="loginModal"
+    :closeModal="closeLoginModal"
+    :toggleRegistration="toggleRegistration"
+  />
   <EmailSent :modalOpen="emailSent" />
 
   <router-view />
