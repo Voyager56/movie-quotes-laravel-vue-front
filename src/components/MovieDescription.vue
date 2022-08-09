@@ -78,7 +78,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import instance from "../config/axios";
+import axiosInstance from "../config/axios";
 import { useI18n } from "vue-i18n";
 import IconLoading from "../assets/icons/IconLoading.vue";
 import IconPlus from "../assets/icons/IconPlus.vue";
@@ -103,7 +103,7 @@ function openQuoteModal() {
 }
 
 onMounted(() => {
-  instance.get(`/api/movies/${route.params.id}`).then((res) => {
+  axiosInstance.get(`/api/movies/${route.params.id}`).then((res) => {
     movie.value = res.data.movie;
     quotes.value = res.data.quotes;
   });
@@ -111,7 +111,7 @@ onMounted(() => {
 
 function deleteMovie(e) {
   e.preventDefault();
-  instance.delete(`/api/movies/delete/${route.params.id}`).then(() => {
+  axiosInstance.delete(`/api/movies/delete/${route.params.id}`).then(() => {
     window.location.href = "/main/movies/";
   });
 }

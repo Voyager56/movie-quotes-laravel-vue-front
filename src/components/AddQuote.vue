@@ -6,7 +6,7 @@ import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
-import instance from "../config/axios/index";
+import axiosInstance from "../config/axios/index";
 import { useI18n } from "vue-i18n";
 import ImageDrop from "./ImageDrop.vue";
 
@@ -62,7 +62,7 @@ function postMovie(e, values) {
   form.append("file", image.value);
   form.append("quote_ka", values.quote_ka);
   form.append("quote_en", values.quote_en);
-  instance
+  axiosInstance
     .post("/api/quotes/add", form, {
       headers: {
         "Content-Type": "multipart/form-data",

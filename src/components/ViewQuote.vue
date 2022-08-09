@@ -98,7 +98,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import instance from "../config/axios/index.js";
+import axiosInstance from "../config/axios/index.js";
 import IconLoading from "../assets/icons/IconLoading.vue";
 import IconPen from "../assets/icons/IconPen.vue";
 import IconBin from "../assets/icons/IconBin.vue";
@@ -118,7 +118,7 @@ function addComment(e, id) {
   const comment = e.target.value;
   e.target.value = "";
   if (comment) {
-    instance
+    axiosInstance
       .post(`/api/comment/${id}`, {
         userId: user.value.value.id,
         comment: comment,
@@ -134,14 +134,14 @@ function addComment(e, id) {
 }
 
 onMounted(() => {
-  instance.get(`/api/quotes/${route.params.id}`).then((res) => {
+  axiosInstance.get(`/api/quotes/${route.params.id}`).then((res) => {
     quote.value = res.data.quote;
     comments.value = res.data.comments;
   });
 });
 
 function deleteQuote() {
-  instance.delete(`/api/quotes/delete/${route.params.id}`).then(() => {
+  axiosInstance.delete(`/api/quotes/delete/${route.params.id}`).then(() => {
     window.location.href = "/main/movies";
   });
 }

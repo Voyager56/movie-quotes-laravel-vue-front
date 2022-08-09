@@ -4,7 +4,8 @@ import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import userStore from "../store/index";
 import IconLoading from "../assets/icons/IconLoading.vue";
-import instance from "../config/axios/index";
+import axiosInstance from "../config/axios/index";
+import IconEmailVerified from "../assets/icons/IconEmailVerified.vue";
 
 const emailVerifiedModal = ref(null);
 const emailVerified = ref(false);
@@ -14,7 +15,7 @@ const store = userStore();
 
 onMounted(() => {
   if (route.params) {
-    instance
+    axiosInstance
       .get(`/api/email-verification/${route.params.token}`)
       .then((response) => {
         console.log(response);
@@ -40,14 +41,13 @@ onClickOutside(emailVerifiedModal, () => {
       ref="emailVerifiedModal"
       class="bg-[#222030] w-[600px] h-[400px] text-white flex flex-col items-center justify-evenly"
     >
-      <img
-        src="../assets/images/landingpage/emailverified.png"
-        alt="email_sent"
-        class=""
-      />
+      <IconEmailVerified />
       <h1 class="text-3xl">Thank you!</h1>
       <p>Your account has been activated.</p>
-      <a href="/feed" class="w-[300px] p-3 bg-[#E31221] mt-3 cursor-pointer">
+      <a
+        href="/main/feed"
+        class="w-[300px] p-3 bg-[#E31221] mt-3 cursor-pointer"
+      >
         Go To Feed
       </a>
     </div>

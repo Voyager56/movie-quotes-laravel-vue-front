@@ -215,7 +215,7 @@ import ImageDrop from "./ImageDrop.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import { onClickOutside } from "@vueuse/core";
 import { ref, onMounted } from "vue";
-import instance from "../config/axios";
+import axiosInstance from "../config/axios";
 import Multiselect from "@vueform/multiselect";
 import { useRouter } from "vue-router";
 
@@ -228,7 +228,7 @@ const selectedGenres = ref([]);
 const router = useRouter();
 
 onMounted(() => {
-  instance.get("api/genres").then((res) => {
+  axiosInstance.get("api/genres").then((res) => {
     genres.value = res.data.genres;
   });
 });
@@ -259,7 +259,7 @@ function submit(e, values) {
   form.append("description_ka", values["description in georgian"]);
   form.append("genres", selectedGenres.value);
   form.append("image", image.value);
-  instance.post("/api/movies", form).then((res) => {
+  axiosInstance.post("/api/movies", form).then((res) => {
     router.go();
   });
 }

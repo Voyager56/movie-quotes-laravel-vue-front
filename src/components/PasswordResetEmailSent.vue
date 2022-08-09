@@ -1,38 +1,17 @@
 <script setup>
 import { onClickOutside } from "@vueuse/core";
-import { ref, onMounted, watch } from "vue";
-import { useRoute } from "vue-router";
+import { ref } from "vue";
 import IconEmailSent from "../assets/icons/IconEmailSent.vue";
 
 const emailSent = ref(null);
-const open = ref(props.modalOpen);
-const router = useRoute();
-
-const props = defineProps({
-  modalOpen: Boolean,
-});
-
-watch(
-  () => props.modalOpen,
-  (newValue) => {
-    open.value = newValue;
-  }
-);
-
-onMounted(() => {
-  if (router.path === "/verify") {
-    open.value = true;
-  }
-});
 
 onClickOutside(emailSent, () => {
-  open.value = false;
+  window.location.href = "/";
 });
 </script>
 
 <template>
   <div
-    v-if="open"
     class="fixed left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] w-[100vw] h-[100vh] max-w-[100%] z-10 backdrop-blur-sm flex justify-center items-center"
   >
     <div
@@ -40,12 +19,10 @@ onClickOutside(emailSent, () => {
       class="bg-[#222030] w-[600px] h-[400px] text-white flex flex-col items-center justify-evenly"
     >
       <IconEmailSent />
-      <h1 class="text-3xl">Thank you!</h1>
-      <p>
-        Please check your email and follow the instructions to activate your
-        account.
-      </p>
+      <h1 class="text-3xl">Check your email</h1>
+      <p>We have sent a password recover instructions to your email</p>
       <a href="/" class="w-[300px] p-3 bg-[#E31221] mt-3"> Go to my email </a>
+      <a href="/" class="text-[#6C757D]">Skip, I’ll confirm later</a>
     </div>
   </div>
 </template>

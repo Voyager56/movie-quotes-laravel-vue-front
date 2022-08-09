@@ -9,9 +9,12 @@ import ViewQuote from "../components/ViewQuote.vue";
 import EditQuote from "../components/EditQuote.vue";
 import EditMovie from "../components/EditMovie.vue";
 import MovieDescription from "../components/MovieDescription.vue";
+import PasswordResetEmailSent from "../components/PasswordResetEmailSent.vue";
 import PasswordReset from "../components/PasswordReset.vue";
+import SendPasswordReset from "../components/SendPasswordReset.vue";
+import PasswordConfirmationSuccess from "../components/PasswordConfirmationSuccess.vue";
 import { createRouter, createWebHistory } from "vue-router";
-import instance from "../config/axios/index";
+import axiosInstance from "../config/axios/index";
 import userStore from "../store/index";
 
 const router = createRouter({
@@ -32,6 +35,18 @@ const router = createRouter({
         {
           path: "/password-reset",
           component: PasswordReset,
+        },
+        {
+          path: "/password-reset-sent",
+          component: PasswordResetEmailSent,
+        },
+        {
+          path: "/reset-password/:token?",
+          component: SendPasswordReset,
+        },
+        {
+          path: "/password-reset-success",
+          component: PasswordConfirmationSuccess,
         },
       ],
     },
@@ -76,7 +91,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const store = userStore();
   if (to.fullPath === "/") {
-    instance
+    axiosInstance
       .post("http://127.0.0.1:8000/api/me", {
         Authorization: `Bearer ${localStorage.token}`,
       })
@@ -91,7 +106,7 @@ router.beforeEach((to, from, next) => {
   }
   if (to.path === "/main") next("/main/feed");
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    instance
+    axiosInstance
       .post("http://127.0.0.1:8000/api/me", {
         Authorization: `Bearer ${localStorage.token}`,
       })

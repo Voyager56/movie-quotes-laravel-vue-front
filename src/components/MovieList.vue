@@ -59,7 +59,7 @@ import IconPlus from "../assets/icons/IconPlus.vue";
 import IconCommentNotificationVue from "../assets/icons/IconCommentNotification.vue";
 import AddMovieModal from "./AddMovieModal.vue";
 import { onMounted, ref } from "vue";
-import instance from "../config/axios/index";
+import axiosInstance from "../config/axios/index";
 import { useI18n } from "vue-i18n";
 
 const { locale } = useI18n({ useScope: "global" });
@@ -75,7 +75,7 @@ function closeMovieModal() {
 }
 
 onMounted(() => {
-  instance.get("api/movies").then((res) => {
+  axiosInstance.get("api/movies").then((res) => {
     movies.value = res.data;
     console.log(movies.value);
   });
@@ -86,7 +86,7 @@ function searchDB(e) {
   e.preventDefault();
   const search = e.target.value;
 
-  instance
+  axiosInstance
     .get("api/movies/movie-search/", {
       params: {
         search: search,

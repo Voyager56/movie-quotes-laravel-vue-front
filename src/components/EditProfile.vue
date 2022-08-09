@@ -96,7 +96,7 @@ import userStore from "../store/index";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
-import instance from "../config/axios";
+import axiosInstance from "../config/axios";
 
 const store = userStore();
 const { user } = storeToRefs(store);
@@ -131,7 +131,7 @@ function sendRequest(e, values) {
   if (image.value) {
     data.append("file", image.value);
   }
-  instance
+  axiosInstance
     .post("/api/edit-profile", data, {
       headers: {
         "Content-Type": "multipart/form-data",

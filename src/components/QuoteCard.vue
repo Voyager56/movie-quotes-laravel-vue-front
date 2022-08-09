@@ -57,7 +57,7 @@ import IconEye from "../assets/icons/IconEye.vue";
 import { onClickOutside } from "@vueuse/core";
 import IconBin from "../assets/icons/IconBin.vue";
 import IconPen from "../assets/icons/IconPen.vue";
-import instance from "../config/axios";
+import axiosInstance from "../config/axios";
 
 const { locale } = useI18n({ useScope: "global" });
 const editQuote = ref(null);
@@ -68,7 +68,7 @@ function openQuoteEdit() {
 }
 
 function deleteQuote(id) {
-  instance.delete(`/api/quotes/delete/${id}`).then(() => {
+  axiosInstance.delete(`/api/quotes/delete/${id}`).then(() => {
     window.location.reload();
   });
 }

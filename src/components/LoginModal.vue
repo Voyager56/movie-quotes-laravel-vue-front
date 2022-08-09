@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import { Form, Field, ErrorMessage } from "vee-validate";
-import instance from "../config/axios/index";
+import axiosInstance from "../config/axios/index";
 import IconLoading from "../assets/icons/IconLoading.vue";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
@@ -26,7 +26,7 @@ function toggleRegistrationModal() {
 function handleSubmit(values) {
   loading.value = true;
   userErrors.value = {};
-  instance
+  axiosInstance
     .post("/api/login", values)
     .then((res) => {
       if (res.data.status === "success") {
@@ -51,7 +51,7 @@ onClickOutside(modalRef, () => {
 });
 
 const googleCallback = () => {
-  instance.get("/auth/google/redirect").then((response) => {
+  axiosInstance.get("/auth/google/redirect").then((response) => {
     window.location.href = response.data.url;
   });
 };

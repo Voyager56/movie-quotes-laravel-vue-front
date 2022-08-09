@@ -9,7 +9,7 @@ import IconLikeNotification from "../assets/icons/IconLikeNotification.vue";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
 import { useRoute, useRouter } from "vue-router";
-import instance from "../config/axios/index";
+import axiosInstance from "../config/axios/index";
 import { onClickOutside } from "@vueuse/core";
 import timeDiff from "time-diff-for-humans";
 import { useI18n } from "vue-i18n";
@@ -30,7 +30,7 @@ onMounted(() => {
   const route = useRoute();
   url.value = route.path.split("/main/")[1];
 
-  instance
+  axiosInstance
     .get("/api/notifications")
     .then((res) => {
       notifications.value = res.data.reverse();
@@ -68,7 +68,7 @@ window.Echo.private(`user.${user.value.value.id}`).listen(
 );
 
 function markAllNotificationsAsRead() {
-  instance
+  axiosInstance
     .post("/api/notifications/all")
     .then(() => {
       notifications.value.forEach((notification) => {
@@ -81,7 +81,7 @@ function markAllNotificationsAsRead() {
 }
 
 function markNotificationAsRead(notification) {
-  instance
+  axiosInstance
     .post(`/api/notifications/${notification.id}`)
     .then(() => {
       notification.read = true;
@@ -92,7 +92,7 @@ function markNotificationAsRead(notification) {
 }
 
 function logOut() {
-  instance
+  axiosInstance
     .post("api/logout")
     .then(() => {
       localStorage.token = null;

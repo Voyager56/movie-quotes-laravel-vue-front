@@ -65,6 +65,16 @@ function toggleEmailSent() {
   >
     <div class="font-serif mx-4 p-4 text-center md:p-8">
       <div class="bg-white font-serif text-center">
+        <img
+          src="../assets/images/landingpage/leftshadow.png"
+          class="absolute left-0 top-0 h-full w-[40%]"
+          alt="shadow"
+        />
+        <img
+          src="../assets/images/landingpage/topshadow.png"
+          class="absolute left-0 top-0 h-[20%] w-full"
+          alt="shadow"
+        />
         <div
           class="absolute text-white flex flex-col items-start top-[500px] left-[300px]"
         >
@@ -79,6 +89,16 @@ function toggleEmailSent() {
   <div class="tenembaum flex items-center justify-center h-screen relative">
     <div class="font-serif text-center w-screen">
       <div class="bg-white font-serif text-center">
+        <img
+          src="../assets/images/landingpage/leftshadow.png"
+          class="absolute left-0 top-0 h-full w-[40%]"
+          alt="shadow"
+        />
+        <img
+          src="../assets/images/landingpage/topshadow.png"
+          class="absolute left-0 top-0 h-[20%] w-full"
+          alt="shadow"
+        />
         <div
           class="absolute text-white flex flex-col items-start top-[500px] left-[300px]"
         >
@@ -94,6 +114,16 @@ function toggleEmailSent() {
   <div class="lotr flex items-center justify-center h-screen relative">
     <div class="font-serif text-center w-screen">
       <div class="bg-white font-serif text-center">
+        <img
+          src="../assets/images/landingpage/leftshadow.png"
+          class="absolute left-0 top-0 h-full w-[40%]"
+          alt="shadow"
+        />
+        <img
+          src="../assets/images/landingpage/topshadow.png"
+          class="absolute left-0 top-0 h-[20%] w-full"
+          alt="shadow"
+        />
         <div
           class="absolute text-white flex flex-col items-start top-[500px] left-[300px]"
         >
@@ -125,18 +155,18 @@ function toggleEmailSent() {
 
 <style>
 .interstellar {
-  background: url("src/assets/images/landingpage/interstellar.png") center
+  background: url("../src/assets/images/landingpage/interstellar.png") center
     center no-repeat;
   background-attachment: fixed;
 }
 .tenembaum {
-  background: url("src/assets/images/landingpage/tenembaum.png") center center
-    no-repeat;
+  background: url("../src/assets/images/landingpage/tenembaum.png") center
+    center no-repeat;
   background-attachment: fixed;
 }
 
 .lotr {
-  background: url("src/assets/images/landingpage/lotr.png") center center
+  background: url("../src/assets/images/landingpage/lotr.png") center center
     no-repeat;
   background-attachment: fixed;
 }

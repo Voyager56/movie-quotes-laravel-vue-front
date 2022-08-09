@@ -223,7 +223,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import instance from "../config/axios/index.js";
+import axiosInstance from "../config/axios/index.js";
 import userStore from "../store/index.js";
 import { storeToRefs } from "pinia";
 import IconLoading from "../assets/icons/IconLoading.vue";
@@ -242,11 +242,11 @@ const genres = ref([]);
 const selectedGenres = ref([]);
 
 onMounted(() => {
-  instance.get(`/api/movies/${route.params.id}`).then((res) => {
+  axiosInstance.get(`/api/movies/${route.params.id}`).then((res) => {
     movie.value = res.data.movie;
     console.log(movie.value);
   });
-  instance.get("api/genres").then((res) => {
+  axiosInstance.get("api/genres").then((res) => {
     genres.value = res.data.genres;
   });
 });
@@ -277,7 +277,7 @@ function updateQuote(e, values) {
   formData.append("budget", values["budget"]);
   formData.append("genres", selectedGenres.value);
 
-  instance
+  axiosInstance
     .post(`/api/movies/update/${route.params.id}`, formData, {
       headers: { "content-type": "multipart/form-data" },
     })

@@ -115,7 +115,7 @@
 </template>
 
 <script setup>
-import instance from "../config/axios/index";
+import axiosInstance from "../config/axios/index";
 import { onMounted, ref, watch } from "vue";
 import { useElementVisibility } from "@vueuse/core";
 import IconLoading from "../assets/icons/IconLoading.vue";
@@ -141,7 +141,7 @@ const writeQuoteModal = ref(false);
 const movies = ref([]);
 
 onMounted(() => {
-  instance
+  axiosInstance
     .get("/api/quotes")
     .then((res) => {
       quotes.value = res.data;
@@ -151,7 +151,7 @@ onMounted(() => {
       console.log(err);
     });
 
-  instance
+  axiosInstance
     .get("/api/comments")
     .then((res) => {
       comments.value = [...comments.value, ...res.data];
@@ -160,7 +160,7 @@ onMounted(() => {
       console.log(err);
     });
 
-  instance
+  axiosInstance
     .get("api/movies")
     .then((res) => {
       console.log(res.data);
@@ -218,7 +218,7 @@ watch(targetIsVisible, () => {
   // initiating two api calls on the same page and fetching same data twice
   // this is a workaround
   page.value = page.value ? page.value + 1 : 2;
-  instance
+  axiosInstance
     .get("api/quotes", {
       params: {
         page: page.value,
@@ -235,7 +235,7 @@ function addComment(e, id) {
   const comment = e.target.value;
   e.target.value = "";
   if (comment) {
-    instance
+    axiosInstance
       .post(`/api/comment/${id}`, {
         userId: user.value.value.id,
         comment: comment,
@@ -249,7 +249,7 @@ function addComment(e, id) {
   }
 }
 function likeQuote(e, id) {
-  instance
+  axiosInstance
     .post(`/api/likes/${id}`)
     .then(() => {})
     .catch((err) => {
@@ -260,7 +260,7 @@ function likeQuote(e, id) {
 function searchDB(e) {
   const search = e.target.value;
   if (search.startsWith("#")) {
-    instance
+    axiosInstance
       .get("/api/quotes/search", {
         params: {
           search: search.substring(1),
@@ -274,7 +274,7 @@ function searchDB(e) {
         console.log(err);
       });
   } else if (search.startsWith("@")) {
-    instance
+    axiosInstance
       .get("/api/movies/search", {
         params: {
           search: search.substring(1),
@@ -288,7 +288,7 @@ function searchDB(e) {
         console.log(err);
       });
   } else {
-    instance
+    axiosInstance
       .get("/api/quotes/search", {
         params: {
           search: "",

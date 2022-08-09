@@ -84,7 +84,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import instance from "../config/axios/index.js";
+import axiosInstance from "../config/axios/index.js";
 import userStore from "../store/index.js";
 import { storeToRefs } from "pinia";
 import IconLoading from "../assets/icons/IconLoading.vue";
@@ -100,13 +100,13 @@ const image = ref(null);
 const imageUrl = ref(null);
 
 onMounted(() => {
-  instance.get(`/api/quotes/${route.params.id}`).then((res) => {
+  axiosInstance.get(`/api/quotes/${route.params.id}`).then((res) => {
     quote.value = res.data.quote;
   });
 });
 
 function deleteQuote() {
-  instance.delete(`/api/quotes/delete/${route.params.id}`).then(() => {
+  axiosInstance.delete(`/api/quotes/delete/${route.params.id}`).then(() => {
     window.location.href = "/main/movies";
   });
 }
@@ -130,7 +130,7 @@ function updateQuote(e, values) {
   formData.append("quote_en", values["quote_en"]);
   formData.append("quote_ka", values["quote_ka"]);
 
-  instance
+  axiosInstance
     .post(`/api/quotes/update/${route.params.id}`, formData, {
       headers: { "content-type": "multipart/form-data" },
     })
