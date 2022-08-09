@@ -64,7 +64,7 @@ const googleCallback = () => {
     v-if="modal"
     class="fixed left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] w-[100vw] h-[100vh] max-w-[100%] z-10 backdrop-blur-sm flex justify-center items-center"
   >
-    <div role="status" v-if="loading">
+    <div v-if="loading" role="status">
       <IconLoading />
     </div>
     <div
@@ -93,7 +93,7 @@ const googleCallback = () => {
               :key="error"
               class="text-red-400 text-left w-[300px] h-[25px]"
             >
-              {{ error }}
+              {{ $t(`${error}`) }}
             </div>
           </div>
           <ErrorMessage
@@ -119,7 +119,7 @@ const googleCallback = () => {
               :key="error"
               class="text-red-400 text-left w-[300px] h-[25px]"
             >
-              {{ error }}
+              {{ $t(`${error}`) }}
             </div>
           </div>
           <ErrorMessage
@@ -145,7 +145,7 @@ const googleCallback = () => {
               :key="error"
               class="text-red-400 text-left w-[300px] h-[25px]"
             >
-              {{ error }}
+              {{ $t(`${error}`) }}
             </div>
           </div>
           <ErrorMessage
@@ -173,7 +173,7 @@ const googleCallback = () => {
               :key="error"
               class="text-red-400 text-left w-[300px] h-[25px]"
             >
-              {{ error }}
+              {{ $t(`${error}`) }}
             </div>
           </div>
           <ErrorMessage
@@ -199,9 +199,9 @@ const googleCallback = () => {
         <div>{{ $t("google_auth") }}</div>
       </button>
       <div class="flex mb-5">
-        Already have an account?
+        {{ $t("already_have_account") }}
         <button class="underline text-blue-600 mx-2" @click="toggleLoginModal">
-          Log In
+          {{ $t("log_in") }}
         </button>
       </div>
     </div>

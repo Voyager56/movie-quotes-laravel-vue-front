@@ -125,7 +125,7 @@ function postMovie(e, values) {
             name="quote_ka"
             class="text-red-500 text-sm"
           ></ErrorMessage>
-          <ImageDrop :setImage="setImage" />
+          <ImageDrop :set-image="setImage" />
           <div class="relative w-full">
             <div class="w-full pb-5 cursor-pointer">
               <div

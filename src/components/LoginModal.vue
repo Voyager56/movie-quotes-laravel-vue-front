@@ -91,7 +91,7 @@ const googleCallback = () => {
               :key="error"
               class="text-red-400 text-left w-[300px] h-[25px]"
             >
-              {{ error }}
+              {{ $t(`${error}`) }}
             </div>
           </div>
           <ErrorMessage
@@ -117,7 +117,7 @@ const googleCallback = () => {
               :key="error"
               class="text-red-400 text-left w-[300px] h-[25px]"
             >
-              {{ error }}
+              {{ $t(`${error}`) }}
             </div>
           </div>
           <ErrorMessage
@@ -132,9 +132,9 @@ const googleCallback = () => {
               $t("remember_me")
             }}</label>
           </div>
-          <a href="/forgot-password" class="text-blue-600 underline"
-            >Forgot password</a
-          >
+          <a href="/password-reset" class="text-blue-600 underline">{{
+            $t("forgot_password")
+          }}</a>
         </div>
         <button
           :disabled="!meta.valid"
@@ -154,12 +154,12 @@ const googleCallback = () => {
         <div>{{ $t("google_auth") }}</div>
       </button>
       <div class="flex mb-5">
-        Already have an account?
+        {{ $t("already_have_account") }}
         <button
           class="text-blue-600 underline mx-3"
           @click="toggleRegistrationModal"
         >
-          Sign Up
+          {{ $t("sign_up") }}
         </button>
       </div>
     </div>

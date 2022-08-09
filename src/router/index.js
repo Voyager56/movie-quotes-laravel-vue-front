@@ -7,7 +7,9 @@ import FeedComponent from "../components/FeedComponent.vue";
 import MovieList from "../components/MovieList.vue";
 import ViewQuote from "../components/ViewQuote.vue";
 import EditQuote from "../components/EditQuote.vue";
+import EditMovie from "../components/EditMovie.vue";
 import MovieDescription from "../components/MovieDescription.vue";
+import PasswordReset from "../components/PasswordReset.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import instance from "../config/axios/index";
 import userStore from "../store/index";
@@ -26,6 +28,10 @@ const router = createRouter({
         {
           path: "/verify",
           component: EmailSent,
+        },
+        {
+          path: "/password-reset",
+          component: PasswordReset,
         },
       ],
     },
@@ -57,6 +63,10 @@ const router = createRouter({
         {
           path: "/main/movies/edit/quote/:id",
           component: EditQuote,
+        },
+        {
+          path: "/main/movies/edit/movie/:id",
+          component: EditMovie,
         },
       ],
     },

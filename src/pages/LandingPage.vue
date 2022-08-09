@@ -53,11 +53,11 @@ function toggleEmailSent() {
 <template>
   <header class="bg-black text-white h-screen">
     <NavBar
-      :dropDown="dropDown"
-      :toggleDropDown="toggleDropDown"
-      :toggleRegistration="toggleRegistration"
-      :toggleLogin="toggleLogin"
-      :closeDropDown="closeDropDown"
+      :drop-down="dropDown"
+      :toggle-drop-down="toggleDropDown"
+      :toggle-registration="toggleRegistration"
+      :toggle-login="toggleLogin"
+      :close-drop-down="closeDropDown"
     />
   </header>
   <div
@@ -109,16 +109,16 @@ function toggleEmailSent() {
 
   <RegistrationModal
     :modal="registrationModal"
-    :closeModal="closeRegistrationModal"
-    :epenEmailSent="toggleEmailSent"
-    :openLogin="toggleLogin"
+    :close-modal="closeRegistrationModal"
+    :epen-email-sent="toggleEmailSent"
+    :open-login="toggleLogin"
   />
   <LoginModal
     :modal="loginModal"
-    :closeModal="closeLoginModal"
-    :toggleRegistration="toggleRegistration"
+    :close-modal="closeLoginModal"
+    :toggle-registration="toggleRegistration"
   />
-  <EmailSent :modalOpen="emailSent" />
+  <EmailSent :modal-open="emailSent" />
 
   <router-view />
 </template>

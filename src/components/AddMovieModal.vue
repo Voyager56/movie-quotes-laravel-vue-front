@@ -194,7 +194,7 @@
             class="text-left text-red-600"
           />
 
-          <ImageDrop :setImage="setImage" />
+          <ImageDrop :set-image="setImage" />
           <button
             class="w-full text-center my-2 py-2 bg-[#E31221] rounded-md disabled:opacity-40"
             :disabled="!meta.valid || selectedGenres.length === 0"

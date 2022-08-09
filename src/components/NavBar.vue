@@ -15,9 +15,9 @@ defineProps({
     <p class="text-[#DDCCAA] text-2xl">MOVIE QUOTES</p>
     <div class="flex justify-evenly w-[400px] items-center">
       <LanguageButtons
-        :dropDown="dropDown"
-        :toggleDropDown="toggleDropDown"
-        :closeDropDown="closeDropDown"
+        :drop-down="dropDown"
+        :toggle-drop-down="toggleDropDown"
+        :close-drop-down="closeDropDown"
       />
       <button
         class="bg-red-500 py-2 px-4 rounded-md"

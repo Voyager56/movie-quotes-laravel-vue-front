@@ -113,7 +113,7 @@ function logOut() {
       <a href="/main/feed" class="text-[#DDCCAA] text-2xl">MOVIE QUOTES</a>
       <div class="flex justify-between w-[300px] items-center">
         <div>
-          <button @click="toggle" class="relative">
+          <button class="relative" @click="toggle">
             <IconBell />
             <h3
               class="bg-red-500 rounded-full p-4 w-3 h-3 text-white absolute top-[-15px] right-[-15px] flex items-center justify-center"
@@ -187,13 +187,13 @@ function logOut() {
           </div>
         </div>
         <LanguageButtons
-          :dropDown="langDropDown"
-          :toggleDropDown="toggleLanguageDropdown"
-          :closeDropDown="closeLanguageDropdown"
+          :drop-down="langDropDown"
+          :toggle-drop-down="toggleLanguageDropdown"
+          :close-drop-down="closeLanguageDropdown"
         />
         <button
-          @click="logOut"
           class="py-2 px-3 text-white border-white border-[1px] rounded-lg"
+          @click="logOut"
         >
           {{ $t("log_out") }}
         </button>

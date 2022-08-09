@@ -11,26 +11,26 @@
           <p class="ml-5">{{ $t("write_quote") }}</p>
         </div>
         <div
-          ref="searchRef"
-          class="h-[30px] border-b-2 border-gray-300 flex mx-3 cursor-pointer"
-          @click="openSearch"
+          class="relative my-[4px] mx-[2px] h-[50px] w-[50px] align-bottom flex items-center ml-10"
         >
-          <IconSearch />
-          <div v-if="search" class="w-full">
-            <input
-              type="text"
-              placeholder="Enter @ to search movies, Enter # to search quotes"
-              class="bg-[#22203033]/100 px-5 w-full"
-              v-on:keyup.enter="searchDB"
-            />
-          </div>
-          <p v-else class="pl-5">{{ $t("search") }}</p>
+          <input
+            id="searchright"
+            class="search expandright"
+            type="search"
+            name="search"
+            placeholder="Enter @ to search movies, Enter # to search quotes "
+            @keyup.enter="searchDB"
+          />
+          <label class="searchbutton flex justify-between" for="searchright">
+            <IconSearch />
+            <p class="mx-10 w-[100px] text-xl">{{ $t("search") }}</p>
+          </label>
         </div>
       </div>
       <AddQuote
         :modal="writeQuoteModal"
         :movies="movies"
-        :closeModal="closeWriteQuoteModal"
+        :close-modal="closeWriteQuoteModal"
       />
       <div v-if="!quotes">
         <IconLoading />
@@ -117,7 +117,7 @@
 <script setup>
 import instance from "../config/axios/index";
 import { onMounted, ref, watch } from "vue";
-import { onClickOutside, useElementVisibility } from "@vueuse/core";
+import { useElementVisibility } from "@vueuse/core";
 import IconLoading from "../assets/icons/IconLoading.vue";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
@@ -138,8 +138,6 @@ const page = ref();
 const targetIsVisible = useElementVisibility(element);
 const writeQuoteDiv = ref(null);
 const writeQuoteModal = ref(false);
-const search = ref(false);
-const searchRef = ref(null);
 const movies = ref([]);
 
 onMounted(() => {
@@ -171,22 +169,6 @@ onMounted(() => {
     .catch((err) => {
       console.log(err);
     });
-});
-
-function openSearch() {
-  search.value = true;
-  writeQuoteDiv.value.className =
-    "flex cursor-pointer relative items-center w-[20%] bg-[#24222F] rounded-md p-3";
-  searchRef.value.className =
-    "w-[45%] h-[30px] border-b-2 border-gray-300 flex mx-3 cursor-pointer";
-}
-
-onClickOutside(searchRef, () => {
-  search.value = false;
-  writeQuoteDiv.value.className =
-    "flex cursor-pointer relative items-center w-[45%] bg-[#24222F] rounded-md p-3";
-  searchRef.value.className =
-    "h-[30px] border-b-2 border-gray-300 flex mx-3 cursor-pointer";
 });
 
 function openWriteQuoteModal() {
@@ -279,7 +261,7 @@ function searchDB(e) {
   const search = e.target.value;
   if (search.startsWith("#")) {
     instance
-      .get("/api/quotes", {
+      .get("/api/quotes/search", {
         params: {
           search: search.substring(1),
         },
@@ -291,8 +273,7 @@ function searchDB(e) {
       .catch((err) => {
         console.log(err);
       });
-  }
-  if (search.startsWith("@")) {
+  } else if (search.startsWith("@")) {
     instance
       .get("/api/movies/search", {
         params: {
@@ -306,6 +287,72 @@ function searchDB(e) {
       .catch((err) => {
         console.log(err);
       });
+  } else {
+    instance
+      .get("/api/quotes/search", {
+        params: {
+          search: "",
+        },
+      })
+      .then((res) => {
+        quotes.value = res.data;
+        page.value += 1;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }
 </script>
+
+<style scoped>
+.searchbutton {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.search:focus + .searchbutton {
+  transition-duration: 0.4s;
+  opacity: 0;
+  -moz-transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
+  -o-transition-duration: 0.4s;
+  background-color: black;
+  color: black;
+}
+
+.search {
+  position: absolute;
+  left: 49px;
+  background-color: #00000033;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 12px;
+  opacity: 1;
+  padding: 0;
+  width: 0;
+  height: 100%;
+  z-index: 10;
+  transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
+  -o-transition-duration: 0.4s;
+}
+
+.search:focus {
+  width: 400px;
+  padding: 0 16px 0 0;
+}
+
+.expandright {
+  left: auto;
+  right: 90px;
+}
+
+.expandright:focus {
+  padding: 0 0 0 16px;
+}
+</style>

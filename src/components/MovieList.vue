@@ -3,9 +3,25 @@
     <div class="flex justify-between items-center">
       <p>{{ $t("my_list") }} [{{ $t("total") }} {{ movies.length }}]</p>
       <div class="flex items-center">
-        <p class="ml-2 flex mx-5 w-[75px] justify-between">
-          <IconSearch /> Search
-        </p>
+        <div
+          class="relative my-[4px] mx-[2px] h-[50px] w-[50px] align-bottom flex items-center ml-10"
+        >
+          <input
+            id="searchright"
+            class="search expandright"
+            type="search"
+            name="search"
+            placeholder="Search Movies"
+            @keyup.enter="searchDB"
+          />
+          <label
+            class="searchbutton flex justify-between items-center right-0"
+            for="searchright"
+          >
+            <IconSearch />
+            <p class="mx-10 w-[100px] text-xl">{{ $t("search") }}</p>
+          </label>
+        </div>
         <button
           class="bg-red-500 px-2 py-3 rounded-sm flex items-center justify-between w-[120px]"
           @click="openAddMovieModal"
@@ -34,7 +50,7 @@
       </div>
     </div>
   </div>
-  <AddMovieModal :modal="addMovie" :closeModal="closeMovieModal" />
+  <AddMovieModal :modal="addMovie" :close-modal="closeMovieModal" />
 </template>
 
 <script setup>
@@ -65,4 +81,71 @@ onMounted(() => {
   });
   document.body.style.overflow = "hidden";
 });
+
+function searchDB(e) {
+  e.preventDefault();
+  const search = e.target.value;
+
+  instance
+    .get("api/movies/movie-search/", {
+      params: {
+        search: search,
+      },
+    })
+    .then((res) => {
+      movies.value = res.data;
+    });
+}
 </script>
+
+<style scoped>
+.searchbutton {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.search:focus + .searchbutton {
+  transition-duration: 0.4s;
+  opacity: 0;
+  -moz-transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
+  -o-transition-duration: 0.4s;
+  background-color: black;
+  color: black;
+}
+
+.search {
+  position: absolute;
+  left: 49px;
+  background-color: #00000033;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 12px;
+  opacity: 1;
+  padding: 0;
+  width: 0;
+  height: 100%;
+  z-index: 10;
+  transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
+  -o-transition-duration: 0.4s;
+}
+
+.search:focus {
+  width: 400px;
+  padding: 0 16px 0 0;
+}
+
+.expandright {
+  left: auto;
+  right: 90px;
+}
+
+.expandright:focus {
+  padding: 0 0 0 16px;
+}
+</style>

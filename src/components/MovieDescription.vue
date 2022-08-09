@@ -11,9 +11,22 @@
           class="w-[809px] h-[441px] rounded-xl"
         />
         <div class="flex flex-col text-2xl ml-10 justify-start items-start">
-          <p class="text-[#DDCCAA]">
-            {{ movie.title[locale] }} ({{ movie.release_year }})
-          </p>
+          <div class="flex items-center">
+            <p class="text-[#DDCCAA]">
+              {{ movie.title[locale] }} ({{ movie.release_year }})
+            </p>
+            <div
+              class="ml-[200px] flex bg-[#24222F] px-4 py-2 rounded-md items-center"
+            >
+              <a :href="`/main/movies/edit/movie/${movie.id}`">
+                <IconPen />
+              </a>
+              <div class="text-2xl mx-5 text-gray-400">|</div>
+              <button @click="deleteMovie">
+                <IconBin />
+              </button>
+            </div>
+          </div>
           <div class="flex pt-2">
             <div
               v-for="genre in movie.genres"
@@ -58,7 +71,7 @@
   <AddQuote
     :modal="addQuoteModal"
     :movies="[movie]"
-    :closeModal="closeQuoteModal"
+    :close-modal="closeQuoteModal"
   />
 </template>
 
@@ -72,6 +85,8 @@ import IconPlus from "../assets/icons/IconPlus.vue";
 import AddQuote from "./AddQuote.vue";
 
 import QuoteCard from "./QuoteCard.vue";
+import IconBin from "../assets/icons/IconBin.vue";
+import IconPen from "../assets/icons/IconPen.vue";
 
 const { locale } = useI18n({ useScope: "global" });
 const route = useRoute();
@@ -93,4 +108,11 @@ onMounted(() => {
     quotes.value = res.data.quotes;
   });
 });
+
+function deleteMovie(e) {
+  e.preventDefault();
+  instance.delete(`/api/movies/delete/${route.params.id}`).then(() => {
+    window.location.href = "/main/movies/";
+  });
+}
 </script>
