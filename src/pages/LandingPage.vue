@@ -61,7 +61,7 @@ function toggleEmailSent() {
     />
   </header>
   <div
-    class="interstellar flex items-center justify-center h-screen pb-12 relative"
+    class="interstellar flex items-center justify-center h-screen pb-12 relative w-screen"
   >
     <div class="font-serif mx-4 p-4 text-center md:p-8">
       <div class="bg-white font-serif text-center">
@@ -76,7 +76,7 @@ function toggleEmailSent() {
           alt="shadow"
         />
         <div
-          class="absolute text-white flex flex-col items-start top-[500px] left-[300px]"
+          class="absolute text-white flex flex-col items-start left-[20px] md:top-[500px] md:left-[300px]"
         >
           <p class="text-3xl">
             — “You have to leave somethig behind to go forward”
@@ -100,7 +100,7 @@ function toggleEmailSent() {
           alt="shadow"
         />
         <div
-          class="absolute text-white flex flex-col items-start top-[500px] left-[300px]"
+          class="absolute text-white flex flex-col items-start left-[20px] md:top-[500px] md:left-[300px]"
         >
           <p class="text-3xl">
             — “I think we’re just gonna have to be secretly in love with earch
@@ -125,7 +125,7 @@ function toggleEmailSent() {
           alt="shadow"
         />
         <div
-          class="absolute text-white flex flex-col items-start top-[500px] left-[300px]"
+          class="absolute text-white flex flex-col items-start left-[20px] md:top-[500px] md:left-[300px]"
         >
           <p class="text-3xl">
             — “Po-tay-toes! Boil 'em, mash 'em, stick 'em in a stew... Lovely

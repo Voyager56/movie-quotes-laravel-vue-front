@@ -1,21 +1,21 @@
 <template>
   <div class="relative">
-    <div class="w-[80rem] flex flex-col justify-center text-left">
-      <div class="flex items-center">
+    <div class="md:w-[80rem] flex flex-col justify-center text-left">
+      <div class="flex items-center mt-5 ml-5">
         <div
           ref="writeQuoteDiv"
-          class="flex cursor-pointer relative items-center w-[45%] bg-[#24222F] rounded-md p-3"
+          class="flex cursor-pointer relative items-center w-[80%] md:w-[46%] bg-[#24222F] rounded-md p-3"
           @click="openWriteQuoteModal"
         >
           <IconWriteMovie />
           <p class="ml-5">{{ $t("write_quote") }}</p>
         </div>
         <div
-          class="relative my-[4px] mx-[2px] h-[50px] w-[50px] align-bottom flex items-center ml-10"
+          class="md:relative my-[4px] mx-[2px] h-[50px] w-[50px] align-bottom md:flex items-center ml-10 absolute md:top-0 md:right-0 top-[-50px] right-[60px]"
         >
           <input
             id="searchright"
-            class="search expandright"
+            class="search expandright md:right-[90px] md:left-auto"
             type="search"
             name="search"
             placeholder="Enter @ to search movies, Enter # to search quotes "
@@ -23,7 +23,9 @@
           />
           <label class="searchbutton flex justify-between" for="searchright">
             <IconSearch />
-            <p class="mx-10 w-[100px] text-xl">{{ $t("search") }}</p>
+            <p class="mx-10 w-[100px] text-xl hidden md:block">
+              {{ $t("search") }}
+            </p>
           </label>
         </div>
       </div>
@@ -39,7 +41,7 @@
         v-for="quote in quotes"
         v-else
         :key="quote.quote"
-        class="bg-[#11101A] w-[50rem] flex flex-col self-start pt-5 px-10 my-10"
+        class="bg-[#11101A] md:w-[50rem] flex flex-col self-start pt-5 px-10 my-10"
       >
         <div class="flex items-center">
           <img
@@ -354,5 +356,13 @@ function searchDB(e) {
 
 .expandright:focus {
   padding: 0 0 0 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .expandright {
+    left: auto;
+    right: -50px;
+    top: -20px;
+  }
 }
 </style>

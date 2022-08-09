@@ -10,7 +10,7 @@
     class="flex flex-col justify-center items-center h-fit bg-[#11101A]"
   >
     <div
-      class="flex w-[900px] justify-between px-10 mt-5 pb-5 border-b-2 border-[#EFEFEF33]/20"
+      class="flex md:w-[900px] w-full justify-between px-10 mt-5 pb-5 border-b-2 border-[#EFEFEF33]/20"
     >
       <div class="flex w-[50px] justify-between">
         <a :href="`/main/movies/edit/quote/${quote.id}`">
@@ -35,13 +35,13 @@
       type="text"
       readonly
       :value="quote.text.en"
-      class="bg-black text-white border-[#EFEFEF33]/20 border-2 w-[90%] p-3 self-start mx-10 my-2"
+      class="bg-black text-white border-[#EFEFEF33]/20 border-2 w-[90%] p-3 self-start mx-3 md:mx-10 my-2"
     />
     <input
       type="text"
       readonly
       :value="quote.text.ka"
-      class="bg-black text-white border-[#EFEFEF33]/20 border-2 w-[90%] p-3 self-start mx-10 my-2"
+      class="bg-black text-white border-[#EFEFEF33]/20 border-2 w-[90%] p-3 self-start mx-3 md:mx-10 my-2"
     />
     <img
       :src="quote.thumbnail"

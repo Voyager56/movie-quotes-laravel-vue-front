@@ -2,13 +2,13 @@
   <div v-if="!movie">
     <IconLoading />
   </div>
-  <div v-else class="bg-[#11101A] h-fit">
+  <div v-else class="bg-[#11101A] h-fit md:px-10">
     <div
-      class="flex w-[900px] justify-between px-10 mt-5 h-fit border-b-2 border-[#EFEFEF33]/20"
+      class="flex w-full md:w-[900px] justify-between px-10 mt-5 h-fit border-b-2 border-[#EFEFEF33]/20"
     >
       <button class="flex" @click="deleteQuote">
         <IconBin />
-        <p class="mx-5">Delete</p>
+        <p class="md:mx-5">Delete</p>
       </button>
       <p>Edit Quote</p>
       <a href="/main/feed" class="text-2xl">x</a>
@@ -22,7 +22,7 @@
         />
         <p class="ml-3">{{ user.value.username }}</p>
       </div>
-      <div class="flex w-full items-start flex-col mx-10 p-3">
+      <div class="flex w-full items-start flex-col md:mx-10 p-3">
         <Field
           id="title_en"
           name="title_en"
@@ -33,7 +33,7 @@
         />
         <ErrorMessage name="title_en" class="text-left text-red-600 w-fit" />
       </div>
-      <div class="flex w-full items-start flex-col mx-10 p-3">
+      <div class="flex w-full items-start flex-col md:mx-10 p-3">
         <Field
           id="title_ka"
           name="title_ka"
@@ -53,7 +53,7 @@
         mode="tags"
         :classes="{
           container:
-            'relative mx-auto w-[790px] flex items-center justify-end box-border cursor-pointer border border-gray-300 rounded bg-black  text-base leading-snug outline-none',
+            'relative md:mx-auto w-[300px] ml-[10px] md:w-[790px] flex items-center justify-end box-border cursor-pointer border border-gray-300 rounded bg-black  text-base leading-snug outline-none',
           containerDisabled: 'cursor-default bg-gray-100',
           containerOpen: 'rounded-b-none',
           containerOpenTop: 'rounded-t-none',
@@ -66,11 +66,11 @@
           tag: 'bg-gray-400 text-white text-sm font-semibold py-0.5 pl-2 rounded mr-1 mb-1 flex items-center  rtl:pl-0 rtl:pr-2 rtl:mr-0 rtl:ml-1',
           tagDisabled: 'pr-2 opacity-50 rtl:pl-2',
           tagRemove:
-            'flex items-center justify-center p-1 mx-0.5 rounded-sm bg-gray-400 hover:bg-red-700 hover:bg-opacity-100 group',
+            'flex items-center justify-center p-1 md:mx-0.5 rounded-sm bg-gray-400 hover:bg-red-700 hover:bg-opacity-100 group',
           tagRemoveIcon:
             'bg-multiselect-remove bg-center bg-gray-400 bg-no-repeat opacity-100 inline-block w-3 h-3 group-hover:opacity-60',
           tagsSearchWrapper:
-            'inline-block relative mx-1 mb-1 flex-grow flex-shrink h-full',
+            'inline-block relative md:mx-1 mb-1 flex-grow flex-shrink h-full',
           tagsSearch:
             'absolute inset-0 border-0 outline-none focus:ring-0  p-0 text-base font-sans box-border',
           tagsSearchCopy: 'invisible  inline-block h-px',
@@ -109,7 +109,7 @@
         }"
         class="multiselect-blue"
       />
-      <div class="flex w-full items-start flex-col mx-10 p-3">
+      <div class="flex w-full items-start flex-col md:mx-10 p-3">
         <Field
           id="budget"
           name="budget"
@@ -120,7 +120,7 @@
         />
         <ErrorMessage name="budget" class="text-left text-red-600" />
       </div>
-      <div class="flex w-full items-start flex-col mx-10 p-3">
+      <div class="flex w-full items-start flex-col md:mx-10 p-3">
         <Field
           id="release_year"
           name="release year"
@@ -131,7 +131,7 @@
         />
         <ErrorMessage name="release year" class="text-left text-red-600" />
       </div>
-      <div class="flex w-full items-start flex-col mx-10 p-3">
+      <div class="flex w-full items-start flex-col md:mx-10 p-3">
         <Field
           id="description_en"
           name="description_en"
@@ -145,7 +145,7 @@
           class="text-left text-red-600 w-fit"
         />
       </div>
-      <div class="flex w-full items-start flex-col mx-10 p-3">
+      <div class="flex w-full items-start flex-col md:mx-10 p-3">
         <Field
           id="description_ka"
           name="description_ka"
@@ -156,7 +156,7 @@
         />
         <ErrorMessage name="description_ka" class="text-left text-red-600" />
       </div>
-      <div class="flex w-full items-start flex-col mx-10 p-3">
+      <div class="flex w-full items-start flex-col md:mx-10 p-3">
         <Field
           id="director_en"
           name="director_en"
@@ -167,7 +167,7 @@
         />
         <ErrorMessage name="director_en" class="text-left text-red-600 w-fit" />
       </div>
-      <div class="flex w-full items-start flex-col mx-10 p-3">
+      <div class="flex w-full items-start flex-col md:mx-10 p-3">
         <Field
           id="director_ka"
           name="director_ka"
@@ -178,7 +178,7 @@
         />
         <ErrorMessage name="director_ka" class="text-left text-red-600" />
       </div>
-      <div class="relative overflow-hidden w-full px-10 rounded-md my-5">
+      <div class="relative overflow-hidden w-full md:px-10 rounded-md my-5">
         <img
           v-if="!imageUrl"
           :src="movie.thumbnail"
@@ -197,7 +197,7 @@
             name="image"
             type="file"
             rules="required"
-            class="absolute top-0 text-[1000px] right-10 left-10 opacity-0"
+            class="absolute top-0 text-[100%] right-10 left-10 opacity-0"
             @change="imageUpload"
           />
           <ErrorMessage name="image" class="text-left text-red-600" />
@@ -210,7 +210,7 @@
         </div>
       </div>
       <button
-        class="w-[90%] py-3 mb-10 mx-10 bg-[#E31221] rounded-md disabled:opacity-40"
+        class="w-[90%] py-3 mb-10 md:md:mx-10 bg-[#E31221] rounded-md disabled:opacity-40"
         :disabled="!meta.valid"
         @click="updateQuote($event, values)"
       >

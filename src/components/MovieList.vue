@@ -1,10 +1,10 @@
 <template>
-  <div class="w-full mr-[5rem]">
-    <div class="flex justify-between items-center">
+  <div class="w-full h-screen mr-[5rem]">
+    <div class="flex justify-between items-center pt-5 pl-10">
       <p>{{ $t("my_list") }} [{{ $t("total") }} {{ movies.length }}]</p>
       <div class="flex items-center">
         <div
-          class="relative my-[4px] mx-[2px] h-[50px] w-[50px] align-bottom flex items-center ml-10"
+          class="md:relative my-[4px] mx-[2px] h-[50px] w-[50px] align-bottom flex items-center ml-10 absolute right-[60px] top-[10px]"
         >
           <input
             id="searchright"
@@ -19,18 +19,20 @@
             for="searchright"
           >
             <IconSearch />
-            <p class="mx-10 w-[100px] text-xl">{{ $t("search") }}</p>
+            <p class="mx-10 w-[100px] text-xl hidden md:block">
+              {{ $t("search") }}
+            </p>
           </label>
         </div>
         <button
-          class="bg-red-500 px-2 py-3 rounded-sm flex items-center justify-between w-[120px]"
+          class="bg-red-500 px-2 py-3 rounded-sm md:flex items-center justify-between w-[120px] hidden"
           @click="openAddMovieModal"
         >
           <IconPlus /> Add Movie
         </button>
       </div>
     </div>
-    <div class="flex flex-wrap">
+    <div class="flex flex-wrap mt-5 pl-10">
       <div v-for="movie in movies" :key="movie.id">
         <a :href="`/main/movies/` + movie.id" class="flex flex-col">
           <img
@@ -147,5 +149,13 @@ function searchDB(e) {
 
 .expandright:focus {
   padding: 0 0 0 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .expandright {
+    left: auto;
+    right: -50px;
+    top: 0px;
+  }
 }
 </style>

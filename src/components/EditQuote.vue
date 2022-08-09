@@ -2,9 +2,9 @@
   <div v-if="!quote">
     <IconLoading />
   </div>
-  <div v-else class="bg-[#11101A] h-fit">
+  <div v-else class="bg-[#11101A] h-screen w-screen">
     <div
-      class="flex w-[900px] justify-between px-10 mt-5 h-fit border-b-2 border-[#EFEFEF33]/20"
+      class="flex w-screen md:w-[900px] justify-between px-10 mt-5 h-fit border-b-2 border-[#EFEFEF33]/20"
     >
       <button class="flex" @click="deleteQuote">
         <IconBin />
@@ -22,25 +22,25 @@
         />
         <p class="ml-3">{{ user.value.username }}</p>
       </div>
-      <div class="flex w-full items-start flex-col mx-10 p-3">
+      <div class="flex w-full items-start flex-col md:mx-10 p-3">
         <Field
           id="quote_en"
           name="quote_en"
           type="text"
           rules="required|english"
           :value="quote.text.en"
-          class="bg-black text-white border-[#EFEFEF33]/20 border-2 p-3 w-[90%] my-2"
+          class="bg-black text-white border-[#EFEFEF33]/20 border-2 md:p-3 w-[90%] my-2"
         />
         <ErrorMessage name="quote_en" class="text-left text-red-600 w-fit" />
       </div>
-      <div class="flex w-full items-start flex-col mx-10 p-3">
+      <div class="flex w-full items-start flex-col md:mx-10 p-3">
         <Field
           id="quote_ka"
           name="quote_ka"
           type="text"
           rules="required|georgian"
           :value="quote.text.ka"
-          class="bg-black text-white border-[#EFEFEF33]/20 border-2 p-3 w-[90%] my-2"
+          class="bg-black text-white border-[#EFEFEF33]/20 border-2 md:p-3 w-[90%] my-2"
         />
         <ErrorMessage name="quote_ka" class="text-left text-red-600" />
       </div>
@@ -71,7 +71,7 @@
         </div>
       </div>
       <button
-        class="w-[90%] py-3 mb-10 mx-10 bg-[#E31221] rounded-md disabled:opacity-40"
+        class="w-[90%] py-3 mb-10 md:mx-10 bg-[#E31221] rounded-md disabled:opacity-40"
         :disabled="!meta.valid"
         @click="updateQuote($event, values)"
       >

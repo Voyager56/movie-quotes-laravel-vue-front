@@ -1,18 +1,18 @@
 <template>
   <div v-if="!movie"><IconLoading /></div>
-  <div v-else class="flex flex-col">
-    <div class="self-start text-2xl">Movie Description</div>
+  <div v-else class="flex flex-col md:px-10 md:py-10">
+    <div class="self-start text-2xl hidden md:block">Movie Description</div>
 
     <div class="mt-10">
-      <div class="flex">
+      <div class="flex flex-col md:flex-row items-center justify-center">
         <img
           :src="movie.thumbnail"
           alt="movie-thumbnail"
-          class="w-[809px] h-[441px] rounded-xl"
+          class="w-[70%] md:w-[809px] md:h-[441px] rounded-xl"
         />
         <div class="flex flex-col text-2xl ml-10 justify-start items-start">
-          <div class="flex items-center">
-            <p class="text-[#DDCCAA]">
+          <div class="flex items-center flex-col md:flex-row">
+            <p class="text-[#DDCCAA] text-left">
               {{ movie.title[locale] }} ({{ movie.release_year }})
             </p>
             <div
@@ -41,7 +41,7 @@
               {{ $t("director") }}: {{ movie.director[locale] }}
             </p>
             <p class="mt-3">{{ $t("budget") }}: {{ movie.budget }}</p>
-            <p class="mt-3">{{ movie.description[locale] }}</p>
+            <p class="mt-3 text-left">{{ movie.description[locale] }}</p>
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@
       <div
         v-for="quote in quotes"
         :key="quote.id"
-        class="bg-[#24222F] mx-5 px-10 py-5 rounded-md w-[700px] mt-[5rem]"
+        class="bg-[#24222F] mx-5 px-10 py-5 rounded-md w-[60%] md:w-[700px] mt-[5rem]"
       >
         <QuoteCard :quote="quote" />
       </div>

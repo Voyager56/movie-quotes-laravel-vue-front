@@ -11,8 +11,8 @@ defineProps({
 </script>
 
 <template>
-  <div class="flex justify-between py-5 px-10">
-    <p class="text-[#DDCCAA] text-2xl">MOVIE QUOTES</p>
+  <div class="flex justify-between py-5 px-0 md:px-10">
+    <p class="text-[#DDCCAA] text-sm md:text-2xl">MOVIE QUOTES</p>
     <div class="flex justify-evenly w-[400px] items-center">
       <LanguageButtons
         :drop-down="dropDown"

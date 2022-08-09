@@ -13,6 +13,8 @@ import axiosInstance from "../config/axios/index";
 import { onClickOutside } from "@vueuse/core";
 import timeDiff from "time-diff-for-humans";
 import { useI18n } from "vue-i18n";
+import IconEye from "../assets/icons/IconEye.vue";
+import IconDropDown from "../assets/icons/IconDropDown.vue";
 
 const { locale } = useI18n({ useScope: "global" });
 
@@ -25,6 +27,7 @@ const notifications = ref([]);
 const notificationModal = ref(false);
 const notificationModalRef = ref(null);
 const element = ref(null);
+const isLowRes = ref(!(window.innerWidth < 768));
 
 onMounted(() => {
   const route = useRoute();
@@ -39,6 +42,14 @@ onMounted(() => {
       console.log(err);
     });
 });
+
+watch(isLowRes, () => {
+  document.body.style.overflow = isLowRes.value ? "hidden" : "auto";
+});
+
+function toggleSideBar() {
+  isLowRes.value = !isLowRes.value;
+}
 
 function toggle() {
   notificationModal.value = !notificationModal.value;
@@ -108,11 +119,16 @@ function logOut() {
   <!-- navbar -->
   <div ref="element">
     <div
-      class="bg-[#22203033]/100 h-[5rem] flex items-center justify-between px-0 md:px-20"
+      class="bg-[#22203033]/100 h-[5rem] sticky flex items-center justify-between px-0 md:px-20"
     >
-      <a href="/main/feed" class="text-[#DDCCAA] text-2xl">MOVIE QUOTES</a>
+      <a href="/main/feed" class="text-[#DDCCAA] text-2xl hidden md:block"
+        >MOVIE QUOTES</a
+      >
       <div class="flex justify-between w-[300px] items-center">
-        <div>
+        <button class="absolute left-[50px] md:hidden" @click="toggleSideBar">
+          <IconDropDown />
+        </button>
+        <div class="absolute md:static flex right-2">
           <button class="relative" @click="toggle">
             <IconBell />
             <h3
@@ -124,11 +140,11 @@ function logOut() {
           </button>
           <div
             v-if="notificationModal"
-            class="bg-[#22203033]/70 left-0 right-0 top-[5rem] bottom-0 absolute z-10 backdrop-blur-sm"
+            class="bg-[#22203033]/70 left-0 right-0 top-[5rem] bottom-0 absolute z-[100] backdrop-blur-sm"
           >
             <div
               ref="notificationModalRef"
-              class="absolute bg-[#000000] text-white right-[100px] max-h-[600px] pb-5 top-[0px] w-[500px] flex flex-col items-start px-5 rounded-xl h-[600px] overflow-y-scroll"
+              class="absolute bg-[#000000] text-white right-[20px] md:right-[100px] max-h-[600px] pb-5 top-[0px] z-[100] w-[300px] md:w-[500px] flex flex-col items-start px-5 rounded-xl h-[600px] overflow-y-scroll"
               :class="{ hidden: !notificationModal }"
             >
               <div class="flex justify-between w-[100%]">
@@ -140,10 +156,10 @@ function logOut() {
               <div
                 v-for="notification in notifications"
                 :key="notification"
-                class="flex justify-between mt-2 pt-5 px-5 w-full border-[1px] border-[#6C757D80]/80 rounded-md cursor-pointer"
+                class="flex justify-between mt-2 pt-5 px-5 w-full border-[1px] z-[100] border-[#6C757D80]/80 rounded-md cursor-pointer"
                 @click="markNotificationAsRead(notification.notification)"
               >
-                <div class="flex">
+                <div class="flex z-100">
                   <img
                     :src="notification.comingFrom.photo"
                     alt="user-photo"
@@ -186,13 +202,15 @@ function logOut() {
             </div>
           </div>
         </div>
-        <LanguageButtons
-          :drop-down="langDropDown"
-          :toggle-drop-down="toggleLanguageDropdown"
-          :close-drop-down="closeLanguageDropdown"
-        />
+        <div class="hidden md:block">
+          <LanguageButtons
+            :drop-down="langDropDown"
+            :toggle-drop-down="toggleLanguageDropdown"
+            :close-drop-down="closeLanguageDropdown"
+          />
+        </div>
         <button
-          class="py-2 px-3 text-white border-white border-[1px] rounded-lg"
+          class="py-2 px-3 text-white border-white border-[1px] rounded-lg hidden md:block"
           @click="logOut"
         >
           {{ $t("log_out") }}
@@ -200,10 +218,13 @@ function logOut() {
       </div>
     </div>
     <div
-      class="bg-gradient-to-r from-[#181623] to-[#0D0B14] pt-10 pl-10 text-white flex"
+      class="bg-gradient-to-r from-[#181623] to-[#0D0B14] text-white flex h-full"
     >
       <!-- sidebar -->
-      <div class="w-[20rem] flex flex-col align-center h-[100vh]">
+      <div
+        v-if="isLowRes"
+        class="w-[20rem] bg-black pt-10 pl-10 absolute h-full md:h-screen md:sticky md:top-0 top-[5rem] z-[100] left-0 flex flex-col align-center"
+      >
         <div class="flex items-center">
           <img
             :src="user.value.photo"
@@ -231,6 +252,8 @@ function logOut() {
           <p class="text-left w-[100px]">{{ $t("movie_list") }}</p>
         </a>
       </div>
+
+      <!-- main -->
       <router-view v-slot="{ Component }">
         <component :is="Component" />
       </router-view>

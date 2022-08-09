@@ -2,14 +2,18 @@
   <div
     class="flex py-6 border-b-2 border-[#EFEFEF33]/20 w-full justify-between items-center relative"
   >
-    <img
-      :src="quote.thumbnail"
-      alt="quote thumbnail"
-      class="w-[100px] h-[100px]"
-    />
-    <p class="mx-5 text-2xl break-words w-[400px]">
-      "{{ quote.text[locale] }}"
-    </p>
+    <div
+      class="flex justify-between w-full flex-col md:flex-row items-center px-5"
+    >
+      <img
+        :src="quote.thumbnail"
+        alt="quote thumbnail"
+        class="w-full md:w-[400px] h-[100px]"
+      />
+      <p class="mx-5 text-2xl break-words w-full mt-5">
+        "{{ quote.text[locale] }}"
+      </p>
+    </div>
     <button class="self-start text-2xl" @click="openQuoteEdit">...</button>
     <div
       v-if="editQuote"
