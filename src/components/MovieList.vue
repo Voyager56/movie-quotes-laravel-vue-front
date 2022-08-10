@@ -154,7 +154,7 @@ function searchDB(e) {
 @media screen and (max-width: 768px) {
   .expandright {
     left: auto;
-    right: -50px;
+    right: -100px;
     top: 0px;
   }
 }

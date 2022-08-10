@@ -59,7 +59,7 @@ function postMovie(e, values) {
   e.preventDefault();
   const form = new FormData();
   form.append("movie", chosenMovie.value.id);
-  form.append("file", image.value);
+  form.append("image", image.value);
   form.append("quote_ka", values.quote_ka);
   form.append("quote_en", values.quote_en);
   axiosInstance

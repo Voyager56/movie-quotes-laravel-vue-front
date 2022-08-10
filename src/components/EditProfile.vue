@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center :mx-20">
+  <div class="flex flex-col items-center h-screen md:px-10 md:py-10 :mx-20">
     <div class="text-3xl self-start hidden md:block">{{ $t("profile") }}</div>
     <Form
       v-slot="{ values }"
