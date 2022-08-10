@@ -49,7 +49,7 @@
     <div class="flex flex-col items-start mt-10">
       <div class="flex">
         <p class="text-xl">
-          {{ $t("quotes") }} ({{ $t("total") }} {{ quotes.length }})
+          {{ $t("quotes") }} ({{ $t("total") }} {{ movie.quotes.length }})
         </p>
         <p class="text-3xl text-[#6C757D] mt-[-5px] mx-2">|</p>
         <button
@@ -60,7 +60,7 @@
         </button>
       </div>
       <div
-        v-for="quote in quotes"
+        v-for="quote in movie.quotes"
         :key="quote.id"
         class="bg-[#24222F] mx-5 px-10 py-5 rounded-md w-[60%] md:w-[700px] mt-[5rem]"
       >
@@ -83,7 +83,6 @@ import { useI18n } from "vue-i18n";
 import IconLoading from "../assets/icons/IconLoading.vue";
 import IconPlus from "../assets/icons/IconPlus.vue";
 import AddQuote from "./AddQuote.vue";
-
 import QuoteCard from "./QuoteCard.vue";
 import IconBin from "../assets/icons/IconBin.vue";
 import IconPen from "../assets/icons/IconPen.vue";
@@ -91,21 +90,15 @@ import IconPen from "../assets/icons/IconPen.vue";
 const { locale } = useI18n({ useScope: "global" });
 const route = useRoute();
 const movie = ref(null);
-const quotes = ref([]);
 const addQuoteModal = ref(false);
 
 function closeQuoteModal() {
   addQuoteModal.value = false;
 }
 
-function openQuoteModal() {
-  addQuoteModal.value = true;
-}
-
 onMounted(() => {
   axiosInstance.get(`/api/movies/${route.params.id}`).then((res) => {
     movie.value = res.data.movie;
-    quotes.value = res.data.quotes;
   });
 });
 

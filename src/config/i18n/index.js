@@ -84,6 +84,7 @@ const messages = {
     my_list: "ჩემი ფილმების სია",
     total: "ჯამში",
     quotes: "ციტატები",
+    director: "რეჟისორი",
     add_quote: "დაამატე ციტატა",
     view_quote: "ციტატის ნახვა",
     username_required: "მომხმარებლის სახელი სავალდებულოა",
