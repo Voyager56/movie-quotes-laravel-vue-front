@@ -13,6 +13,7 @@ import PasswordResetEmailSent from "../components/PasswordResetEmailSent.vue";
 import PasswordReset from "../components/PasswordReset.vue";
 import SendPasswordReset from "../components/SendPasswordReset.vue";
 import PasswordConfirmationSuccess from "../components/PasswordConfirmationSuccess.vue";
+import PageNotFound from "../components/PageNotFound.vue";
 import UnauthorizedPage from "../components/UnauthorizedPage.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import axiosInstance from "../config/axios/index";
@@ -89,6 +90,10 @@ const router = createRouter({
           component: EditMovie,
         },
       ],
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      component: PageNotFound,
     },
   ],
 });
