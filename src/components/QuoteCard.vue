@@ -72,7 +72,7 @@ function openQuoteEdit() {
 }
 
 function deleteQuote(id) {
-  axiosInstance.delete(`/api/quotes/delete/${id}`).then(() => {
+  axiosInstance.delete(`/api/quotes/${id}`).then(() => {
     window.location.reload();
   });
 }

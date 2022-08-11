@@ -1,6 +1,6 @@
 <template>
   <div v-if="!movie"><IconLoading /></div>
-  <div v-else class="flex flex-col md:px-10 md:py-10">
+  <div v-else class="flex flex-col md:px-10 md:py-10 md:w-fit">
     <div class="self-start text-2xl hidden md:block">Movie Description</div>
 
     <div class="mt-10">
@@ -91,6 +91,10 @@ const { locale } = useI18n({ useScope: "global" });
 const route = useRoute();
 const movie = ref(null);
 const addQuoteModal = ref(false);
+
+function openQuoteModal() {
+  addQuoteModal.value = true;
+}
 
 function closeQuoteModal() {
   addQuoteModal.value = false;

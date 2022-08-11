@@ -141,7 +141,7 @@ onMounted(() => {
 });
 
 function deleteQuote() {
-  axiosInstance.delete(`/api/quotes/delete/${route.params.id}`).then(() => {
+  axiosInstance.delete(`/api/quotes/${route.params.id}`).then(() => {
     window.location.href = "/main/movies";
   });
 }

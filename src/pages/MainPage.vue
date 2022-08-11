@@ -8,18 +8,16 @@ import IconCommentNotification from "../assets/icons/IconCommentNotification.vue
 import IconLikeNotification from "../assets/icons/IconLikeNotification.vue";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import axiosInstance from "../config/axios/index";
 import { onClickOutside } from "@vueuse/core";
 import timeDiff from "time-diff-for-humans";
 import { useI18n } from "vue-i18n";
-import IconEye from "../assets/icons/IconEye.vue";
 import IconDropDown from "../assets/icons/IconDropDown.vue";
 
 const { locale } = useI18n({ useScope: "global" });
 
 const url = ref("feed");
-const router = useRouter();
 const store = userStore();
 const { user } = storeToRefs(store);
 const langDropDown = ref(false);
@@ -106,10 +104,9 @@ function logOut() {
   axiosInstance
     .post("api/logout")
     .then(() => {
+      window.location.href = "/";
       localStorage.token = null;
       store.setUser(null);
-      console.log(localStorage.token);
-      router.go("/");
     })
     .catch((e) => console.log(e));
 }

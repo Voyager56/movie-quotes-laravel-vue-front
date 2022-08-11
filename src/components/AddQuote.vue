@@ -63,7 +63,7 @@ function postMovie(e, values) {
   form.append("quote_ka", values.quote_ka);
   form.append("quote_en", values.quote_en);
   axiosInstance
-    .post("/api/quotes/add", form, {
+    .post("/api/quotes", form, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

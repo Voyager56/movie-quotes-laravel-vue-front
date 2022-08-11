@@ -61,7 +61,7 @@ function toggleEmailSent() {
     />
   </header>
   <div
-    class="interstellar flex items-center justify-center h-screen pb-12 relative w-screen"
+    class="interstellar flex items-center justify-center h-screen pb-12 relative w-full"
   >
     <div class="font-serif mx-4 p-4 text-center md:p-8">
       <div class="bg-white font-serif text-center">

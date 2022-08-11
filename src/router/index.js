@@ -13,6 +13,7 @@ import PasswordResetEmailSent from "../components/PasswordResetEmailSent.vue";
 import PasswordReset from "../components/PasswordReset.vue";
 import SendPasswordReset from "../components/SendPasswordReset.vue";
 import PasswordConfirmationSuccess from "../components/PasswordConfirmationSuccess.vue";
+import UnauthorizedPage from "../components/UnauthorizedPage.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import axiosInstance from "../config/axios/index";
 import userStore from "../store/index";
@@ -49,6 +50,10 @@ const router = createRouter({
           component: PasswordConfirmationSuccess,
         },
       ],
+    },
+    {
+      path: "/unauthorized",
+      component: UnauthorizedPage,
     },
     {
       path: "/main",
@@ -90,22 +95,23 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const store = userStore();
-  if (to.fullPath === "/") {
-    axiosInstance
-      .post("http://127.0.0.1:8000/api/me", {
-        Authorization: `Bearer ${localStorage.token}`,
-      })
-      .then((res) => {
-        store.setUser(res.data.user);
-        if (res.data.user.email_verified_at) {
-          next("/main/feed");
-        } else {
-          next("/verified");
-        }
-      });
-  }
+  // if (to.fullPath === "/") {
+  //   axiosInstance
+  //     .post("http://127.0.0.1:8000/api/me", {
+  //       Authorization: `Bearer ${localStorage.token}`,
+  //     })
+  //     .then((res) => {
+  //       store.setUser(res.data.user);
+  //       if (res.data.user.email_verified_at) {
+  //         next("/main/feed");
+  //       } else {
+  //         next("/verified");
+  //       }
+  //     });
+  // }
   if (to.path === "/main") next("/main/feed");
   if (to.matched.some((record) => record.meta.requiresAuth)) {
+    console.log(from);
     axiosInstance
       .post("http://127.0.0.1:8000/api/me", {
         Authorization: `Bearer ${localStorage.token}`,
@@ -119,7 +125,7 @@ router.beforeEach((to, from, next) => {
         }
       })
       .catch(() => {
-        next("/");
+        next("/unauthorized");
       });
   } else {
     next();

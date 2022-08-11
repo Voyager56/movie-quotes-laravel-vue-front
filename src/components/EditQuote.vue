@@ -2,7 +2,7 @@
   <div v-if="!quote">
     <IconLoading />
   </div>
-  <div v-else class="bg-[#11101A] h-screen w-screen">
+  <div v-else class="bg-[#11101A] h-screen md:h-full w-fit">
     <div
       class="flex w-screen md:w-[900px] justify-between px-10 mt-5 h-fit border-b-2 border-[#EFEFEF33]/20"
     >
@@ -22,7 +22,7 @@
         />
         <p class="ml-3">{{ user.value.username }}</p>
       </div>
-      <div class="flex w-full items-start flex-col md:mx-10 p-3">
+      <div class="flex w-full items-start flex-col md:mx-10 sm:pl-5 md:p-3">
         <Field
           id="quote_en"
           name="quote_en"
@@ -33,7 +33,7 @@
         />
         <ErrorMessage name="quote_en" class="text-left text-red-600 w-fit" />
       </div>
-      <div class="flex w-full items-start flex-col md:mx-10 p-3">
+      <div class="flex w-full items-start flex-col md:mx-10 sm:pl-5 md:p-3">
         <Field
           id="quote_ka"
           name="quote_ka"
@@ -106,7 +106,7 @@ onMounted(() => {
 });
 
 function deleteQuote() {
-  axiosInstance.delete(`/api/quotes/delete/${route.params.id}`).then(() => {
+  axiosInstance.delete(`/api/quotes/${route.params.id}`).then(() => {
     window.location.href = "/main/movies";
   });
 }
@@ -131,7 +131,7 @@ function updateQuote(e, values) {
   formData.append("quote_ka", values["quote_ka"]);
 
   axiosInstance
-    .post(`/api/quotes/update/${route.params.id}`, formData, {
+    .put(`/api/quotes/${route.params.id}`, formData, {
       headers: { "content-type": "multipart/form-data" },
     })
     .then(() => {
