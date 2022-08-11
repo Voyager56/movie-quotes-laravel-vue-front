@@ -133,6 +133,7 @@ function updateQuote(e, values) {
   axiosInstance
     .put(`/api/quotes/${route.params.id}`, formData, {
       headers: { "content-type": "multipart/form-data" },
+      _method: "PUT",
     })
     .then(() => {
       window.location.href = "/main/movies";

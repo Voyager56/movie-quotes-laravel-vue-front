@@ -108,7 +108,7 @@ onMounted(() => {
 
 function deleteMovie(e) {
   e.preventDefault();
-  axiosInstance.delete(`/api/movies/delete/${route.params.id}`).then(() => {
+  axiosInstance.delete(`/api/movies/${route.params.id}`).then(() => {
     window.location.href = "/main/movies/";
   });
 }

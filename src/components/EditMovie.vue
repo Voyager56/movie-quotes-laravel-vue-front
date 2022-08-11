@@ -197,7 +197,7 @@
             name="image"
             type="file"
             rules="required"
-            class="absolute top-0 text-[100%] right-10 left-10 opacity-0"
+            class="absolute top-0 text-[100px] md:text-[10000px] right-10 left-10 opacity-0"
             @change="imageUpload"
           />
           <ErrorMessage name="image" class="text-left text-red-600" />
@@ -278,8 +278,9 @@ function updateQuote(e, values) {
   formData.append("genres", selectedGenres.value);
 
   axiosInstance
-    .post(`/api/movies/update/${route.params.id}`, formData, {
+    .put(`/api/movies/${route.params.id}`, formData, {
       headers: { "content-type": "multipart/form-data" },
+      _method: "PUT",
     })
     .then(() => {
       window.location.href = "/main/movies";
