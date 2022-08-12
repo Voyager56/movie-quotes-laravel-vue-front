@@ -1,6 +1,6 @@
 <script setup>
-import IconFilm from "../assets/icons/IconFilm.vue";
-import IconArrow from "../assets/icons/IconArrow.vue";
+import IconFilm from "./icons/IconFilm.vue";
+import IconArrow from "./icons/IconArrow.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";

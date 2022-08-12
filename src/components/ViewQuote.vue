@@ -99,11 +99,11 @@
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import axiosInstance from "../config/axios/index.js";
-import IconLoading from "../assets/icons/IconLoading.vue";
-import IconPen from "../assets/icons/IconPen.vue";
-import IconBin from "../assets/icons/IconBin.vue";
-import IconComment from "../assets/icons/IconComment.vue";
-import IconLike from "../assets/icons/IconLike.vue";
+import IconLoading from "./icons/IconLoading.vue";
+import IconPen from "./icons/IconPen.vue";
+import IconBin from "./icons/IconBin.vue";
+import IconComment from "./icons/IconComment.vue";
+import IconLike from "./icons/IconLike.vue";
 import userStore from "../store/index.js";
 import { storeToRefs } from "pinia";
 

@@ -56,9 +56,9 @@
 </template>
 
 <script setup>
-import IconSearch from "../assets/icons/IconSearch.vue";
-import IconPlus from "../assets/icons/IconPlus.vue";
-import IconCommentNotificationVue from "../assets/icons/IconCommentNotification.vue";
+import IconSearch from "./icons/IconSearch.vue";
+import IconPlus from "./icons/IconPlus.vue";
+import IconCommentNotificationVue from "./icons/IconCommentNotification.vue";
 import AddMovieModal from "./AddMovieModal.vue";
 import { onMounted, ref } from "vue";
 import axiosInstance from "../config/axios/index";

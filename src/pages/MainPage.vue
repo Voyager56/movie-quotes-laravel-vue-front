@@ -1,11 +1,12 @@
 <script setup>
 import { ref, onMounted, watch } from "vue";
 import LanguageButtons from "../components/LanguageButtons.vue";
-import IconBell from "../assets/icons/IconBell.vue";
-import IconHome from "../assets/icons/IconHome.vue";
-import IconFilm from "../assets/icons/IconFilm.vue";
-import IconCommentNotification from "../assets/icons/IconCommentNotification.vue";
-import IconLikeNotification from "../assets/icons/IconLikeNotification.vue";
+import IconBell from "../components/icons/IconBell.vue";
+import IconHome from "../components/icons/IconHome.vue";
+import IconFilm from "../components/icons/IconFilm.vue";
+import IconCommentNotification from "../components/icons/IconCommentNotification.vue";
+import IconLikeNotification from "../components/icons/IconLikeNotification.vue";
+import IconDropDown from "../components/icons/IconDropDown.vue";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
@@ -13,7 +14,6 @@ import axiosInstance from "../config/axios/index";
 import { onClickOutside } from "@vueuse/core";
 import timeDiff from "time-diff-for-humans";
 import { useI18n } from "vue-i18n";
-import IconDropDown from "../assets/icons/IconDropDown.vue";
 
 const { locale } = useI18n({ useScope: "global" });
 

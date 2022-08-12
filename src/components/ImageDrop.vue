@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import IconPhoto from "../assets/icons/IconPhoto.vue";
+import IconPhoto from "./icons/IconPhoto.vue";
 import { ref, watch } from "vue";
 import { Field, ErrorMessage } from "vee-validate";
 

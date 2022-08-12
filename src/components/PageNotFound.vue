@@ -13,6 +13,6 @@
 </template>
 
 <script setup>
-import IconGhost from "../assets/icons/IconGhost.vue";
-import IconElipse from "../assets/icons/IconElipse.vue";
+import IconGhost from "./icons/IconGhost.vue";
+import IconElipse from "./icons/IconElipse.vue";
 </script>

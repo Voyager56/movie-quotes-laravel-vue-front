@@ -53,14 +53,14 @@
 </template>
 
 <script setup>
-import IconComment from "../assets/icons/IconComment.vue";
-import IconLike from "../assets/icons/IconLike.vue";
+import IconComment from "./icons/IconComment.vue";
+import IconLike from "./icons/IconLike.vue";
 import { useI18n } from "vue-i18n";
 import { ref } from "vue";
-import IconEye from "../assets/icons/IconEye.vue";
+import IconEye from "./icons/IconEye.vue";
 import { onClickOutside } from "@vueuse/core";
-import IconBin from "../assets/icons/IconBin.vue";
-import IconPen from "../assets/icons/IconPen.vue";
+import IconBin from "./icons/IconBin.vue";
+import IconPen from "./icons/IconPen.vue";
 import axiosInstance from "../config/axios";
 
 const { locale } = useI18n({ useScope: "global" });

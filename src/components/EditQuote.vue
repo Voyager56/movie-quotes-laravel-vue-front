@@ -87,10 +87,10 @@ import { useRoute } from "vue-router";
 import axiosInstance from "../config/axios/index.js";
 import userStore from "../store/index.js";
 import { storeToRefs } from "pinia";
-import IconLoading from "../assets/icons/IconLoading.vue";
-import IconBin from "../assets/icons/IconBin.vue";
+import IconLoading from "./icons/IconLoading.vue";
+import IconBin from "./icons/IconBin.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
-import IconPhoto from "../assets/icons/IconPhoto.vue";
+import IconPhoto from "./icons/IconPhoto.vue";
 
 const route = useRoute();
 const quote = ref(null);

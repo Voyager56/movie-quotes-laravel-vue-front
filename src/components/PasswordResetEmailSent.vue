@@ -1,7 +1,7 @@
 <script setup>
 import { onClickOutside } from "@vueuse/core";
 import { ref } from "vue";
-import IconEmailSent from "../assets/icons/IconEmailSent.vue";
+import IconEmailSent from "./icons/IconEmailSent.vue";
 
 const emailSent = ref(null);
 

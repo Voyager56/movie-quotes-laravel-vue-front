@@ -80,12 +80,12 @@ import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import axiosInstance from "../config/axios";
 import { useI18n } from "vue-i18n";
-import IconLoading from "../assets/icons/IconLoading.vue";
-import IconPlus from "../assets/icons/IconPlus.vue";
+import IconLoading from "./icons/IconLoading.vue";
+import IconPlus from "./icons/IconPlus.vue";
 import AddQuote from "./AddQuote.vue";
 import QuoteCard from "./QuoteCard.vue";
-import IconBin from "../assets/icons/IconBin.vue";
-import IconPen from "../assets/icons/IconPen.vue";
+import IconBin from "./icons/IconBin.vue";
+import IconPen from "./icons/IconPen.vue";
 
 const { locale } = useI18n({ useScope: "global" });
 const route = useRoute();

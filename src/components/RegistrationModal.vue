@@ -3,9 +3,10 @@ import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import axiosInstance from "../config/axios/index";
-import IconLoading from "../assets/icons/IconLoading.vue";
+import IconLoading from "./icons/IconLoading.vue";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
+import IconGoogle from "./icons/IconGoogle.vue";
 
 const modalRef = ref(null);
 const loading = ref(false);
@@ -195,7 +196,9 @@ const googleCallback = () => {
         style="display: flex"
         @click="googleCallback"
       >
-        <img src="../assets/logos/google.png" alt="google-logo" class="pr-3" />
+        <div class="pr-3">
+          <IconGoogle />
+        </div>
         <div>{{ $t("google_auth") }}</div>
       </button>
       <div class="flex mb-5">
