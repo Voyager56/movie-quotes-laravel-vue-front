@@ -244,7 +244,6 @@ const selectedGenres = ref([]);
 onMounted(() => {
   axiosInstance.get(`/api/movies/${route.params.id}`).then((res) => {
     movie.value = res.data.movie;
-    console.log(movie.value);
   });
   axiosInstance.get("api/genres").then((res) => {
     genres.value = res.data.genres;
@@ -262,8 +261,6 @@ function imageUpload(e) {
 
 function updateQuote(e, values) {
   e.preventDefault();
-
-  console.log(image.value);
 
   const formData = new FormData();
   formData.append("image", image.value);

@@ -123,8 +123,6 @@ function imageUpload(e) {
 function updateQuote(e, values) {
   e.preventDefault();
 
-  console.log(image.value);
-
   const formData = new FormData();
   formData.append("image", image.value);
   formData.append("quote_en", values["quote_en"]);

@@ -102,7 +102,6 @@ router.beforeEach((to, from, next) => {
   const store = userStore();
   if (to.path === "/main") next("/main/feed");
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    console.log(from);
     axiosInstance
       .post("http://127.0.0.1:8000/api/me", {
         Authorization: `Bearer ${localStorage.token}`,

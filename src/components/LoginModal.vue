@@ -33,7 +33,6 @@ function handleSubmit(values) {
       if (res.data.status === "success") {
         localStorage.token = "";
         localStorage.token = res.data.token;
-        console.log(res.data.user);
         user.value = res.data.user;
         window.location.href = "/main/feed";
         props.closeModal();

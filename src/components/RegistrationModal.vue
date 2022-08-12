@@ -36,8 +36,7 @@ async function handleSubmit(data) {
       password_confirmation: data["confirm password"],
     })
 
-    .then((response) => {
-      console.log(response.data.status);
+    .then(() => {
       props.epenEmailSent();
       props.closeModal();
     })

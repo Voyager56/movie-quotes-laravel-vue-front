@@ -18,7 +18,6 @@ onMounted(() => {
     axiosInstance
       .get(`/api/email-verification/${route.params.token}`)
       .then((response) => {
-        console.log(response);
         store.user = response.data.user;
         loading.value = false;
         emailVerified.value = true;

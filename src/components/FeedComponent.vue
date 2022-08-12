@@ -165,7 +165,6 @@ onMounted(() => {
   axiosInstance
     .get("api/movies")
     .then((res) => {
-      console.log(res.data);
       movies.value = res.data;
     })
     .catch((err) => {
@@ -207,7 +206,6 @@ window.Echo.channel("QuotesChannel")
     ).commentCount = data.commentCount;
   })
   .listen("PostQuote", ({ data }) => {
-    console.log(data);
     quotes.value = [data, ...quotes.value];
   });
 

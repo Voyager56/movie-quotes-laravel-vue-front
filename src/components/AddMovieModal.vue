@@ -259,7 +259,7 @@ function submit(e, values) {
   form.append("description_ka", values["description in georgian"]);
   form.append("genres", selectedGenres.value);
   form.append("image", image.value);
-  axiosInstance.post("/api/movies", form).then((res) => {
+  axiosInstance.post("/api/movies", form).then(() => {
     router.go();
   });
 }

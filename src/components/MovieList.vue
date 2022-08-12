@@ -79,7 +79,6 @@ function closeMovieModal() {
 onMounted(() => {
   axiosInstance.get("api/movies").then((res) => {
     movies.value = res.data;
-    console.log(movies.value);
   });
   document.body.style.overflow = "hidden";
 });

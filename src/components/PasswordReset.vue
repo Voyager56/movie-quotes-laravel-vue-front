@@ -50,13 +50,12 @@ const email = ref("");
 
 function sendEmailReset(e) {
   e.preventDefault();
-  console.log(email.value);
   axiosInstance
     .post("/api/forgot-password", {
       email: email.value,
     })
     .then((res) => {
-      console.log(res);
+      res;
     });
   window.location.href = "/password-reset-sent";
 }
