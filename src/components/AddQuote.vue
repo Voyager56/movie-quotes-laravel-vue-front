@@ -68,11 +68,6 @@ function postMovie(e, values) {
         "Content-Type": "multipart/form-data",
       },
     })
-    .then((res) => {
-      console.log(res);
-      // quotes.value.push(res.data);
-      // writeQuoteModal.value = false;
-    })
     .catch((err) => {
       console.log(err);
     });

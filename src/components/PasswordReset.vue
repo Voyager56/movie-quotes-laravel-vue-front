@@ -58,6 +58,6 @@ function sendEmailReset(e) {
     .then((res) => {
       console.log(res);
     });
-  // window.location.href = "/password-reset-sent";
+  window.location.href = "/password-reset-sent";
 }
 </script>

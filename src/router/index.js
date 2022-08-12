@@ -100,20 +100,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const store = userStore();
-  // if (to.fullPath === "/") {
-  //   axiosInstance
-  //     .post("http://127.0.0.1:8000/api/me", {
-  //       Authorization: `Bearer ${localStorage.token}`,
-  //     })
-  //     .then((res) => {
-  //       store.setUser(res.data.user);
-  //       if (res.data.user.email_verified_at) {
-  //         next("/main/feed");
-  //       } else {
-  //         next("/verified");
-  //       }
-  //     });
-  // }
   if (to.path === "/main") next("/main/feed");
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     console.log(from);
