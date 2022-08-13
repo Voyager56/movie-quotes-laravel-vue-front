@@ -86,6 +86,7 @@
         class="w-10 h-10 rounded-full mr-5"
       />
       <input
+        id="comment-input"
         type="text"
         class="bg-[#24222F] w-full rounded-xl pl-5"
         placeholder="Write a comment"

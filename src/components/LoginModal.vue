@@ -80,6 +80,7 @@ const googleCallback = () => {
           </div>
           <Field
             type="username"
+            id="username"
             name="username"
             rules="required"
             placeholder="Enter your username or email"
@@ -106,6 +107,7 @@ const googleCallback = () => {
           </div>
           <Field
             type="password"
+            id="password"
             name="password"
             rules="required"
             placeholder="Enter your password"
@@ -137,6 +139,7 @@ const googleCallback = () => {
           }}</a>
         </div>
         <button
+          id="login"
           :disabled="!meta.valid"
           :class="!meta.valid ? `text- gray - 700` : `text - white`"
           class="w-[300px] p-3 bg-[#E31221] mt-3"

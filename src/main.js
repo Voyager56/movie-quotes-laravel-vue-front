@@ -13,15 +13,15 @@ import { i18n } from "./config/i18n/index";
 window.Pusher = Pusher;
 
 window.Echo = new Echo({
-  authEndpoint: "http://127.0.0.1:8000/broadcasting/auth",
+  authEndpoint: import.meta.env.VUE_APP_API_URL + "/broadcasting/auth",
   auth: {
     headers: {
       Authorization: `Bearer ${localStorage.token}`,
     },
   },
   broadcaster: "pusher",
-  key: "85f4b4e04d72b31622a3",
-  cluster: "ap2",
+  key: import.meta.env.VITE_APP_PUSHER_KEY,
+  cluster: import.meta.env.VITE_APP_PUSHER_CLUSTER,
   encrypted: true,
 });
 

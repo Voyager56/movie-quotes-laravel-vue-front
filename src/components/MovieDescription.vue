@@ -1,7 +1,9 @@
 <template>
   <div v-if="!movie"><IconLoading /></div>
   <div v-else class="flex flex-col md:px-10 md:py-10 md:w-fit">
-    <div class="self-start text-2xl hidden md:block">Movie Description</div>
+    <div id="movie-description" class="self-start text-2xl hidden md:block">
+      Movie Description
+    </div>
 
     <div class="mt-10">
       <div class="flex flex-col md:flex-row items-center justify-center">
@@ -18,11 +20,11 @@
             <div
               class="ml-[200px] flex bg-[#24222F] px-4 py-2 rounded-md items-center"
             >
-              <a :href="`/main/movies/edit/movie/${movie.id}`">
+              <a id="edit-movie" :href="`/main/movies/edit/movie/${movie.id}`">
                 <IconPen />
               </a>
               <div class="text-2xl mx-5 text-gray-400">|</div>
-              <button @click="deleteMovie">
+              <button id="delete-movie" @click="deleteMovie">
                 <IconBin />
               </button>
             </div>
@@ -53,6 +55,7 @@
         </p>
         <p class="text-3xl text-[#6C757D] mt-[-5px] mx-2">|</p>
         <button
+          id="add-quote-modal"
           class="bg-red-500 px-2 py-2 rounded-sm flex items-center justify-between w-[120px]"
           @click="openQuoteModal"
         >

@@ -83,6 +83,7 @@ const googleCallback = () => {
           <Field
             type="username"
             name="username"
+            id="username"
             rules="required|min:3|max:15"
             placeholder="At least 3 & max.15 lower case characters"
             class="py-2 pl-4 rounded-sm w-[300px] text-[#6C757D]"
@@ -109,6 +110,7 @@ const googleCallback = () => {
           <Field
             type="email"
             name="email"
+            id="email"
             rules="required|email"
             placeholder="Enter your email"
             class="py-2 pl-4 rounded-sm w-[300px] text-[#6C757D]"
@@ -135,6 +137,7 @@ const googleCallback = () => {
           <Field
             type="password"
             name="password"
+            id="password"
             rules="required|min:8|max:15"
             placeholder="At least 8 & max.15 lower case characters"
             class="py-2 pl-4 rounded-sm w-[300px] text-[#6C757D]"
@@ -161,6 +164,7 @@ const googleCallback = () => {
             <p class="text-red-400">*</p>
           </div>
           <Field
+            id="confirm-password"
             type="password"
             name="confirm password"
             rules="confirmed:@password"
@@ -182,6 +186,7 @@ const googleCallback = () => {
           />
         </div>
         <button
+          id="signup"
           :disabled="!meta.valid"
           :class="!meta.valid ? `text- gray - 700` : `text - white`"
           class="w-[300px] p-3 bg-[#E31221] mt-3"

@@ -20,12 +20,14 @@ defineProps({
         :close-drop-down="closeDropDown"
       />
       <button
+        id="signup-button"
         class="bg-red-500 py-2 px-4 rounded-md"
         @click="toggleRegistration"
       >
         {{ $t("sign_up") }}
       </button>
       <button
+        id="login-button"
         class="border border-1-white py-2 px-4 rounded-md"
         @click="toggleLogin"
       >

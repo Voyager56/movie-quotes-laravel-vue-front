@@ -124,6 +124,7 @@ function postMovie(e, values) {
           <div class="relative w-full">
             <div class="w-full pb-5 cursor-pointer">
               <div
+                id="movie-dropdown"
                 class="bg-[#000000] py-[1rem] px-3 flex items-center w-full relative"
                 @click="openMovieDropdown"
               >
@@ -149,6 +150,7 @@ function postMovie(e, values) {
               <div v-if="movieDropdown" class="absolute top-[4rem]">
                 <div
                   v-for="movie in movies"
+                  id="movie-element"
                   ref="movieDropdownRef"
                   :key="movie.id"
                   class="bg-black px-5 border-2 border-gray-500 w-full left-[1rem] relative cursor-pointer rounded-md my-2"
@@ -163,6 +165,7 @@ function postMovie(e, values) {
                 </div>
               </div>
               <button
+                id="post-quote"
                 class="w-full bg-[#E31221] text-white my-[2rem] py-[1rem] rounded-xl disabled:opacity-40"
                 :disabled="!meta.valid || !image || !chosenMovie"
                 @click="postMovie($event, values)"

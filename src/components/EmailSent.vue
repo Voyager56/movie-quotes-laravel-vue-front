@@ -45,7 +45,9 @@ onClickOutside(emailSent, () => {
         Please check your email and follow the instructions to activate your
         account.
       </p>
-      <a href="/" class="w-[300px] p-3 bg-[#E31221] mt-3"> Go to my email </a>
+      <a id="email-sent" href="/" class="w-[300px] p-3 bg-[#E31221] mt-3">
+        Go to my email
+      </a>
     </div>
   </div>
 </template>

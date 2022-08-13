@@ -3,6 +3,7 @@
     <div class="md:w-[80rem] flex flex-col justify-center text-left">
       <div class="flex items-center mt-5 ml-5">
         <div
+          id="open-quote-modal"
           ref="writeQuoteDiv"
           class="flex cursor-pointer relative items-center w-[80%] md:w-[46%] bg-[#24222F] rounded-md p-3"
           @click="openWriteQuoteModal"
@@ -14,14 +15,19 @@
           class="md:relative my-[4px] mx-[2px] h-[50px] w-[50px] align-bottom md:flex items-center ml-10 absolute md:top-0 md:right-0 top-[-50px] right-[60px]"
         >
           <input
-            id="searchright"
+            id="search-input"
+            v-model="searchKeyWord"
             class="search expandright md:right-[90px] md:left-auto"
             type="search"
             name="search"
             placeholder="Enter @ to search movies, Enter # to search quotes "
             @keyup.enter="searchDB"
           />
-          <label class="searchbutton flex justify-between" for="searchright">
+          <label
+            id="open-search"
+            class="searchbutton flex justify-between"
+            for="search-input"
+          >
             <IconSearch />
             <p class="mx-10 w-[100px] text-xl hidden md:block">
               {{ $t("search") }}
@@ -66,7 +72,7 @@
           </div>
           <div class="flex align-center pb-5 ml-10">
             <p class="mr-5">{{ quote.likes }}</p>
-            <button @click="likeQuote($event, quote.id)">
+            <button id="like-button" @click="likeQuote($event, quote.id)">
               <IconLike
                 :color="
                   quote.userLikes.some(
@@ -90,7 +96,7 @@
               />
               <div class="flex flex-col ml-5 w-full">
                 <h3 class="text-left pt-3">{{ comment.authorUsername }}</h3>
-                <p class="py-5 border-b-2 w-full text-left">
+                <p id="comment-text" class="py-5 border-b-2 w-full text-left">
                   {{ comment.comment }}
                 </p>
               </div>
@@ -104,6 +110,7 @@
             class="w-10 h-10 rounded-full mr-5"
           />
           <input
+            id="comment-input"
             type="text"
             class="bg-[#24222F] w-full rounded-xl pl-5"
             placeholder="Write a comment"
@@ -141,6 +148,7 @@ const targetIsVisible = useElementVisibility(element);
 const writeQuoteDiv = ref(null);
 const writeQuoteModal = ref(false);
 const movies = ref([]);
+const searchKeyWord = ref("");
 
 onMounted(() => {
   axiosInstance
@@ -214,6 +222,7 @@ watch(locale, () => {
 });
 
 watch(targetIsVisible, () => {
+  if (searchKeyWord.value !== "") return;
   // refreshing in firefox doesn't pull you up to the top all the way and target was visibble on the load of the page
   // initiating two api calls on the same page and fetching same data twice
   // this is a workaround
@@ -248,7 +257,7 @@ function addComment(e, id) {
       });
   }
 }
-function likeQuote(e, id) {
+function likeQuote(_, id) {
   axiosInstance
     .post(`/api/likes/${id}`)
     .then(() => {})
@@ -257,8 +266,8 @@ function likeQuote(e, id) {
     });
 }
 
-function searchDB(e) {
-  const search = e.target.value;
+function searchDB() {
+  const search = searchKeyWord.value;
   if (search.startsWith("#")) {
     axiosInstance
       .get("/api/quotes/search", {

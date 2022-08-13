@@ -126,7 +126,7 @@ function logOut() {
           <IconDropDown />
         </button>
         <div class="absolute md:static flex right-2">
-          <button class="relative" @click="toggle">
+          <button id="notification-dropdown" class="relative" @click="toggle">
             <IconBell />
             <h3
               class="bg-red-500 rounded-full p-4 w-3 h-3 text-white absolute top-[-15px] right-[-15px] flex items-center justify-center"
@@ -207,6 +207,7 @@ function logOut() {
           />
         </div>
         <button
+          id="logout"
           class="py-2 px-3 text-white border-white border-[1px] rounded-lg hidden md:block"
           @click="logOut"
         >
@@ -215,7 +216,7 @@ function logOut() {
       </div>
     </div>
     <div
-      class="bg-gradient-to-r from-[#181623] to-[#0D0B14] text-white flex h-full"
+      class="bg-gradient-to-r from-[#181623] to-[#0D0B14] text-white flex h-full overflow-y-scroll"
     >
       <!-- sidebar -->
       <div
@@ -231,7 +232,9 @@ function logOut() {
           />
           <div class="pl-5 flex flex-col items-start">
             <h2>{{ user.value.username }}</h2>
-            <a class="text-left" href="edit">{{ $t("edit_profile") }}</a>
+            <a id="edit-profile" class="text-left" href="edit">{{
+              $t("edit_profile")
+            }}</a>
           </div>
         </div>
         <a
@@ -242,6 +245,7 @@ function logOut() {
           <p class="text-left w-[100px]">{{ $t("news_feed") }}</p>
         </a>
         <a
+          id="movies-list"
           href="/main/movies"
           class="flex justify-between items-center pt-10 w-[150px]"
         >

@@ -1,13 +1,15 @@
 <template>
-  <div class="w-full h-screen mr-[5rem]">
+  <div class="w-full h-screen md:h-full mr-[5rem]">
     <div class="flex justify-between items-center pt-5 pl-10">
-      <p>{{ $t("my_list") }} [{{ $t("total") }} {{ movies.length }}]</p>
+      <p id="my-movie-list">
+        {{ $t("my_list") }} [{{ $t("total") }} {{ movies.length }}]
+      </p>
       <div class="flex items-center">
         <div
           class="md:relative my-[4px] mx-[2px] h-[50px] w-[50px] align-bottom flex items-center ml-10 absolute right-[60px] top-[10px]"
         >
           <input
-            id="searchright"
+            id="movie-search-input"
             class="search expandright"
             type="search"
             name="search"
@@ -15,8 +17,9 @@
             @keyup.enter="searchDB"
           />
           <label
-            class="searchbutton flex justify-between items-center right-0"
-            for="searchright"
+            id="open-search"
+            class="searchbutton flex justify-between items-center right-0 h-fit"
+            for="movie-search-input"
           >
             <IconSearch />
             <p class="mx-10 w-[100px] text-xl hidden md:block">
@@ -25,6 +28,7 @@
           </label>
         </div>
         <button
+          id="add-movie-modal"
           class="bg-red-500 px-2 py-3 rounded-sm md:flex items-center justify-between w-[120px] hidden"
           @click="openAddMovieModal"
         >
@@ -32,13 +36,17 @@
         </button>
       </div>
     </div>
-    <div class="flex flex-wrap mt-5 pl-10">
-      <div v-for="movie in movies" :key="movie.id">
-        <a :href="`/main/movies/` + movie.id" class="flex flex-col">
+    <div class="flex flex-wrap mt-5 h-[600px]">
+      <div v-for="movie in movies" :key="movie.id" class="h-full">
+        <a
+          id="movie-element"
+          :href="`/main/movies/` + movie.id"
+          class="flex flex-col pl-10"
+        >
           <img
             :src="movie.thumbnail"
             alt="movie-thumbnail"
-            class="rounded-xl"
+            class="rounded-xl w-[400px] h-[400px]"
           />
           <div class="flex pt-5 text-2xl">
             <p>{{ movie.title[locale] }}</p>
@@ -154,7 +162,7 @@ function searchDB(e) {
   .expandright {
     left: auto;
     right: -100px;
-    top: 0px;
+    top: -20px;
   }
 }
 </style>

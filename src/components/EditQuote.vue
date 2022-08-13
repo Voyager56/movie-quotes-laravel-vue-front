@@ -44,7 +44,10 @@
         />
         <ErrorMessage name="quote_ka" class="text-left text-red-600" />
       </div>
-      <div class="relative overflow-hidden w-full px-10 rounded-md my-5">
+      <div
+        id="image-select"
+        class="relative overflow-hidden w-full px-10 rounded-md my-5"
+      >
         <img
           v-if="!imageUrl"
           :src="quote.thumbnail"
@@ -57,7 +60,7 @@
             id="image"
             name="image"
             type="file"
-            rules="required"
+            rules=""
             class="absolute top-0 text-[1000px] right-10 left-10 opacity-0"
             @change="imageUpload"
           />
@@ -71,6 +74,7 @@
         </div>
       </div>
       <button
+        id="post-quote"
         class="w-[90%] py-3 mb-10 md:mx-10 bg-[#E31221] rounded-md disabled:opacity-40"
         :disabled="!meta.valid"
         @click="updateQuote($event, values)"
@@ -127,11 +131,11 @@ function updateQuote(e, values) {
   formData.append("image", image.value);
   formData.append("quote_en", values["quote_en"]);
   formData.append("quote_ka", values["quote_ka"]);
+  formData.append("_method", "PUT");
 
   axiosInstance
-    .put(`/api/quotes/${route.params.id}`, formData, {
+    .post(`/api/quotes/${route.params.id}`, formData, {
       headers: { "content-type": "multipart/form-data" },
-      _method: "PUT",
     })
     .then(() => {
       window.location.href = "/main/movies";

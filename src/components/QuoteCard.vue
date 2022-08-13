@@ -14,13 +14,20 @@
         "{{ quote.text[locale] }}"
       </p>
     </div>
-    <button class="self-start text-2xl" @click="openQuoteEdit">...</button>
+    <button
+      id="quote-crud-modal"
+      class="self-start text-2xl"
+      @click="openQuoteEdit"
+    >
+      ...
+    </button>
     <div
       v-if="editQuote"
       ref="editQuoteRef"
       class="flex flex-col absolute right-[-150px] top-10 bg-[#212730] p-5 rounded-md"
     >
       <a
+        id="view-quote"
         :href="`/main/movies/quote/` + quote.id"
         class="flex items-center my-2"
       >
@@ -28,13 +35,18 @@
         <p class="ml-2">View Post</p>
       </a>
       <a
+        id="edit-quote"
         :href="`/main/movies/edit/quote/${quote.id}`"
         class="flex items-center my-2"
       >
         <IconPen />
         <p class="ml-2">Edit</p>
       </a>
-      <button class="flex items-center my-2" @click="deleteQuote(quote.id)">
+      <button
+        id="delete-quote"
+        class="flex items-center my-2"
+        @click="deleteQuote(quote.id)"
+      >
         <IconBin />
         <p class="ml-2">Delete</p>
       </button>

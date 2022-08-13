@@ -1,6 +1,8 @@
 <template>
   <div class="flex flex-col items-center h-screen md:px-10 md:py-10 :mx-20">
-    <div class="text-3xl self-start hidden md:block">{{ $t("profile") }}</div>
+    <div id="my-profile" class="text-3xl self-start hidden md:block">
+      {{ $t("profile") }}
+    </div>
     <Form
       v-slot="{ values }"
       class="flex flex-col mx-7 my-[100px] md:mr-[100px]"
@@ -44,6 +46,7 @@
           <ErrorMessage name="email" class="text-left text-red-400" />
         </div>
         <button
+          id="password-button"
           class="underline text-blue-900 self-start"
           :disabled="user.value.oauth"
           @click="togglePasswordChange"
@@ -71,6 +74,7 @@
               >{{ $t("confirm_password") }}*</label
             >
             <Field
+              id="confirm_password"
               type="password"
               name="confirm password"
               rules="confirmed:@password"
@@ -85,6 +89,7 @@
         </div>
       </div>
       <button
+        id="save-button"
         class="bg-[#E31221] py-1 px-2 rounded-md w-[150px] self-end mt-5"
         @click="sendRequest($event, values)"
       >

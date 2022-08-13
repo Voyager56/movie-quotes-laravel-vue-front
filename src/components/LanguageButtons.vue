@@ -31,7 +31,7 @@ const toggle = () => {
 
 <template>
   <div class="flex items-center relative cursor-pointer z-10" @click="toggle">
-    <button ref="dropDownRef" class="text-white capitalize">
+    <button id="lang-dropdown" ref="dropDownRef" class="text-white capitalize">
       {{ locale }}
     </button>
     <IconArrow
@@ -46,10 +46,10 @@ const toggle = () => {
       class="absolute bg-red-500 top-[30px] text-white left-[-40px] h-[100px] flex flex-col justify-evenly px-5 rounded-xl"
       :class="{ hidden: !dropDown }"
     >
-      <button class="dropdown-item" @click="updateLanguage('en')">
+      <button id="en" class="dropdown-item" @click="updateLanguage('en')">
         English
       </button>
-      <button class="dropdown-item" @click="updateLanguage('ka')">
+      <button id="ka" class="dropdown-item" @click="updateLanguage('ka')">
         ქართული
       </button>
     </div>
