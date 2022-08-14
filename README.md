@@ -50,6 +50,9 @@ compiles and minifies for development: `npm run build`
 lints the code: `npm run lint`
 
 
+when testing edit cypress.env.json according to yuur needs
+
+
 ## Deployment
 
 -   ssh into the server: `ssh username@ipaddress`
