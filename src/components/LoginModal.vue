@@ -79,8 +79,8 @@ const googleCallback = () => {
             <p class="text-red-400">*</p>
           </div>
           <Field
-            type="username"
             id="username"
+            type="username"
             name="username"
             rules="required"
             placeholder="Enter your username or email"
@@ -106,8 +106,8 @@ const googleCallback = () => {
             <p class="text-red-400">*</p>
           </div>
           <Field
-            type="password"
             id="password"
+            type="password"
             name="password"
             rules="required"
             placeholder="Enter your password"

@@ -1,7 +1,67 @@
-# Vue 3 + Vite
+## Table of Contents
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+-   [Introduction](#introduction)
+-   [Prerequisites](#prerequisites)
+-   [Tech Stack](#tech-stack)
+-   [Getting Started](#getting-started)
+-   [Development](#development)
+-   [Deployment](#deployment)
+-   [Resources](#resources)
 
-## Recommended IDE Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+## Introduction
+
+<p> 
+    this is a Movie Quotes update application with many new features like: commenting, liking, searching, live updates and many more.
+ </p>
+
+
+ ## Prerequisites
+
+-   [NodeJs@16.15 and up ](https://www.php.net/downloads)
+-   [VeeValidate](https://vee-validate.logaretm.com/)
+-   [Pinia](https://pinia.vuejs.org/)
+-   [Axios](https://axios-http.com/docs/intro)
+
+## Tech Stack
+
+-   [VueJS](https://vuejs.org/)
+-   [Tailwind](https://tailwindcss.com/docs/installation)
+-   [Vite](https://vitejs.dev/guide/)
+
+## Getting Started
+
+-   Installation:
+
+Clone the repository: `git clone https://github.com/RedberryInternship/Chad-movie-quotes-front-Levan-Mikatadze`
+
+Go to the root directory of the repository: `cd Chad-movie-quotes-front-Levan-Mikatadze`
+
+Install node modules: `npm install`
+
+Copy the .env file to the root directory: `cp .env.example .env`
+and fill in the values for the database connection.
+
+
+## Development
+
+compilation and hot-reload: `npm run serve`
+compiles and minifies for development: `npm run build`
+lints the code: `npm run lint`
+
+
+## Deployment
+
+-   ssh into the server: `ssh username@ipaddress`
+-   run sudo apt update
+-   curl https://deb.nodesource.com/setup_16.x | sudo bash 
+-   sudo apt install nodejs
+-   cd {project_folder}
+-   npm install
+-   npm run build
+-   after all this install php-fpm and nginx and configure them.
+
+
+## Resources
+
+-   [Draw Sql](https://drawsql.app/teams/redberry-18/diagrams/chad-movie-quotes)
