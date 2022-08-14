@@ -81,7 +81,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import axiosInstance from "../config/axios";
+import axiosInstance from "@/config/axios";
 import { useI18n } from "vue-i18n";
 import IconLoading from "@/components/icons/IconLoading.vue";
 import IconPlus from "@/components/icons/IconPlus.vue";

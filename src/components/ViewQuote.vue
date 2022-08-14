@@ -99,7 +99,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import axiosInstance from "../config/axios/index.js";
+import axiosInstance from "@/config/axios/index.js";
 import IconLoading from "@/components/icons/IconLoading.vue";
 import IconPen from "@/components/icons/IconPen.vue";
 import IconBin from "@/components/icons/IconBin.vue";

@@ -1,12 +1,12 @@
 <script setup>
 import { ref, onMounted, watch } from "vue";
-import LanguageButtons from "../components/LanguageButtons.vue";
-import IconBell from "../components/icons/IconBell.vue";
-import IconHome from "../components/icons/IconHome.vue";
-import IconFilm from "../components/icons/IconFilm.vue";
-import IconCommentNotification from "../components/icons/IconCommentNotification.vue";
-import IconLikeNotification from "../components/icons/IconLikeNotification.vue";
-import IconDropDown from "../components/icons/IconDropDown.vue";
+import LanguageButtons from "@/components/LanguageButtons.vue";
+import IconBell from "@/components/icons/IconBell.vue";
+import IconHome from "@/components/icons/IconHome.vue";
+import IconFilm from "@/components/icons/IconFilm.vue";
+import IconCommentNotification from "@/components/icons/IconCommentNotification.vue";
+import IconLikeNotification from "@/components/icons/IconLikeNotification.vue";
+import IconDropDown from "@/components/icons/IconDropDown.vue";
 import userStore from "@/store/index";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";

@@ -73,7 +73,7 @@ import IconEye from "@/components/icons/IconEye.vue";
 import { onClickOutside } from "@vueuse/core";
 import IconBin from "@/components/icons/IconBin.vue";
 import IconPen from "@/components/icons/IconPen.vue";
-import axiosInstance from "../config/axios";
+import axiosInstance from "@/config/axios";
 
 const { locale } = useI18n({ useScope: "global" });
 const editQuote = ref(null);

@@ -20,5 +20,5 @@
 </template>
 
 <script setup>
-import IconGendalf from "../components/icons/IconGendalf.vue";
+import IconGendalf from "@/components/icons/IconGendalf.vue";
 </script>
