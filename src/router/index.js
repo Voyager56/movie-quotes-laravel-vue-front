@@ -16,8 +16,8 @@ import PasswordConfirmationSuccess from "../components/PasswordResetComponents/P
 import PageNotFound from "../pages/PageNotFound.vue";
 import UnauthorizedPage from "../pages/UnauthorizedPage.vue";
 import { createRouter, createWebHistory } from "vue-router";
-import axiosInstance from "../config/axios/index";
-import userStore from "../store/index";
+import axiosInstance from "@/config/axios";
+import userStore from "@/store/index";
 
 const router = createRouter({
   history: createWebHistory(),

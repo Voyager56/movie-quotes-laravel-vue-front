@@ -44,7 +44,7 @@
 <script setup>
 import { ref } from "vue";
 import { Field, Form, ErrorMessage } from "vee-validate";
-import axiosInstance from "../config/axios/index.js";
+import axiosInstance from "@/config/axios/index.js";
 
 const email = ref("");
 

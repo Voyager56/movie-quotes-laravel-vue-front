@@ -100,11 +100,11 @@
 </template>
 
 <script setup>
-import userStore from "../store/index";
+import userStore from "@/store/index";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
-import axiosInstance from "../config/axios";
+import axiosInstance from "@/config/axios";
 
 const store = userStore();
 const { user } = storeToRefs(store);

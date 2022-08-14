@@ -136,13 +136,13 @@
 </template>
 
 <script setup>
-import userStore from "../store/index";
+import userStore from "@/store/index.js";
 import { storeToRefs } from "pinia";
-import ImageDrop from "./ImageDrop.vue";
+import ImageDrop from "@/components/ImageDrop.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import { onClickOutside } from "@vueuse/core";
 import { ref, onMounted } from "vue";
-import axiosInstance from "../config/axios";
+import axiosInstance from "@/config/axios";
 import Multiselect from "@vueform/multiselect";
 import { useRouter } from "vue-router";
 

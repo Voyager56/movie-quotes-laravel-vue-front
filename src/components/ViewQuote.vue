@@ -100,12 +100,12 @@
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import axiosInstance from "../config/axios/index.js";
-import IconLoading from "./icons/IconLoading.vue";
-import IconPen from "./icons/IconPen.vue";
-import IconBin from "./icons/IconBin.vue";
-import IconComment from "./icons/IconComment.vue";
-import IconLike from "./icons/IconLike.vue";
-import userStore from "../store/index.js";
+import IconLoading from "@/components/icons/IconLoading.vue";
+import IconPen from "@/components/icons/IconPen.vue";
+import IconBin from "@/components/icons/IconBin.vue";
+import IconComment from "@/components/icons/IconComment.vue";
+import IconLike from "@/components/icons/IconLike.vue";
+import userStore from "@/store/index.js";
 import { storeToRefs } from "pinia";
 
 const route = useRoute();

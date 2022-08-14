@@ -65,14 +65,14 @@
 </template>
 
 <script setup>
-import IconComment from "./icons/IconComment.vue";
-import IconLike from "./icons/IconLike.vue";
+import IconComment from "@/components/icons/IconComment.vue";
+import IconLike from "@/components/icons/IconLike.vue";
 import { useI18n } from "vue-i18n";
 import { ref } from "vue";
-import IconEye from "./icons/IconEye.vue";
+import IconEye from "@/components/icons/IconEye.vue";
 import { onClickOutside } from "@vueuse/core";
-import IconBin from "./icons/IconBin.vue";
-import IconPen from "./icons/IconPen.vue";
+import IconBin from "@/components/icons/IconBin.vue";
+import IconPen from "@/components/icons/IconPen.vue";
 import axiosInstance from "../config/axios";
 
 const { locale } = useI18n({ useScope: "global" });

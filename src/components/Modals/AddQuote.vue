@@ -1,14 +1,14 @@
 <script setup>
-import IconFilm from "./icons/IconFilm.vue";
-import IconArrow from "./icons/IconArrow.vue";
+import IconFilm from "@/components/icons/IconFilm.vue";
+import IconArrow from "@/components/icons/IconArrow.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
-import userStore from "../store/index";
+import userStore from "@/store/index";
 import { storeToRefs } from "pinia";
-import axiosInstance from "../config/axios/index";
+import axiosInstance from "@/config/axios";
 import { useI18n } from "vue-i18n";
-import ImageDrop from "./ImageDrop.vue";
+import ImageDrop from "@/components/ImageDrop.vue";
 
 const { locale } = useI18n({ useScope: "global" });
 const store = userStore();

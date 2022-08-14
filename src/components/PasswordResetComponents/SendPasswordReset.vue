@@ -57,7 +57,7 @@
 <script setup>
 import { Field, Form, ErrorMessage } from "vee-validate";
 import { onMounted, ref } from "vue";
-import axiosInstance from "../config/axios/index.js";
+import axiosInstance from "@/config/axios/index.js";
 import { useRoute } from "vue-router";
 
 const token = ref("");

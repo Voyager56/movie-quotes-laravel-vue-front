@@ -124,17 +124,17 @@
 </template>
 
 <script setup>
-import axiosInstance from "../config/axios/index";
+import axiosInstance from "@/config/axios";
 import { onMounted, ref, watch } from "vue";
 import { useElementVisibility } from "@vueuse/core";
-import IconLoading from "./icons/IconLoading.vue";
-import userStore from "../store/index";
+import IconLoading from "@/components/icons/IconLoading.vue";
+import userStore from "@/store/index";
 import { storeToRefs } from "pinia";
 import { useI18n } from "vue-i18n";
-import IconComment from "./icons/IconComment.vue";
-import IconLike from "./icons/IconLike.vue";
-import IconWriteMovie from "./icons/IconWriteMovie.vue";
-import IconSearch from "./icons/IconSearch.vue";
+import IconComment from "@/components/icons/IconComment.vue";
+import IconLike from "@/components/icons/IconLike.vue";
+import IconWriteMovie from "@/components/icons/IconWriteMovie.vue";
+import IconSearch from "@/components/icons/IconSearch.vue";
 import AddQuote from "./Modals/AddQuote.vue";
 
 const store = userStore();

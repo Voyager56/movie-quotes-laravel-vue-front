@@ -133,14 +133,14 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import axiosInstance from "../config/axios/index.js";
-import userStore from "../store/index.js";
+import axiosInstance from "@/config/axios/index.js";
+import userStore from "@/store/index.js";
 import { storeToRefs } from "pinia";
-import IconLoading from "./icons/IconLoading.vue";
-import IconBin from "./icons/IconBin.vue";
+import IconLoading from "@/components/icons/IconLoading.vue";
+import IconBin from "@/components/icons/IconBin.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import Multiselect from "@vueform/multiselect";
-import ImageDrop from "./ImageDrop.vue";
+import ImageDrop from "@/components/ImageDrop.vue";
 
 const route = useRoute();
 const movie = ref(null);

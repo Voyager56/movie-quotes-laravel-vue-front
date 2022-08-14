@@ -1,5 +1,5 @@
 <script setup>
-import IconEmailVerified from "./icons/IconEmailVerified.vue";
+import IconEmailVerified from "@/components/icons/IconEmailVerified.vue";
 </script>
 
 <template>

@@ -64,12 +64,12 @@
 </template>
 
 <script setup>
-import IconSearch from "./icons/IconSearch.vue";
-import IconPlus from "./icons/IconPlus.vue";
-import IconCommentNotificationVue from "./icons/IconCommentNotification.vue";
+import IconSearch from "@/components/icons/IconSearch.vue";
+import IconPlus from "@/components/icons/IconPlus.vue";
+import IconCommentNotificationVue from "@/components/icons/IconCommentNotification.vue";
 import AddMovieModal from "./Modals/AddMovieModal.vue";
 import { onMounted, ref } from "vue";
-import axiosInstance from "../config/axios/index";
+import axiosInstance from "@/config/axios";
 import { useI18n } from "vue-i18n";
 
 const { locale } = useI18n({ useScope: "global" });

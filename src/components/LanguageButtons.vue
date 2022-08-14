@@ -1,7 +1,7 @@
 <script setup>
 import { onClickOutside } from "@vueuse/core";
 import { ref } from "vue";
-import IconArrow from "./icons/IconArrow.vue";
+import IconArrow from "@/components/icons/IconArrow.vue";
 import { setLocale } from "@vee-validate/i18n";
 import { useI18n } from "vue-i18n";
 

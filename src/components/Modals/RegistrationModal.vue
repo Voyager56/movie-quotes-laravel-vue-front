@@ -2,11 +2,11 @@
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import { Form, Field, ErrorMessage } from "vee-validate";
-import axiosInstance from "../config/axios/index";
-import IconLoading from "./icons/IconLoading.vue";
-import userStore from "../store/index";
+import axiosInstance from "@/config/axios";
+import IconLoading from "@/components/icons/IconLoading.vue";
+import userStore from "@/store/index";
 import { storeToRefs } from "pinia";
-import IconGoogle from "./icons/IconGoogle.vue";
+import IconGoogle from "@/components/icons/IconGoogle.vue";
 
 const modalRef = ref(null);
 const loading = ref(false);

@@ -2,7 +2,7 @@
 import { onClickOutside } from "@vueuse/core";
 import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
-import IconEmailSent from "./icons/IconEmailSent.vue";
+import IconEmailSent from "@/components/icons/IconEmailSent.vue";
 
 const emailSent = ref(null);
 const open = ref(props.modalOpen);

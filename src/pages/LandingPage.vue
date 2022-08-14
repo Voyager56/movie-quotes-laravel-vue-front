@@ -2,7 +2,7 @@
 import { ref, onMounted } from "vue";
 import NavBar from "../components/NavBar.vue";
 import EmailSent from "../components/EmailSent.vue";
-import userStore from "../store/index";
+import userStore from "@/store/index";
 import { storeToRefs } from "pinia";
 import LoginModal from "../components/Modals/LoginModal.vue";
 import RegistrationModal from "../components/Modals/RegistrationModal.vue";
