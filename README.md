@@ -18,7 +18,7 @@
 
  ## Prerequisites
 
--   [NodeJs@16.15 and up ](https://www.php.net/downloads)
+-   [NodeJs@16.15 and up ](https://nodejs.org/en/)
 -   [VeeValidate](https://vee-validate.logaretm.com/)
 -   [Pinia](https://pinia.vuejs.org/)
 -   [Axios](https://axios-http.com/docs/intro)
