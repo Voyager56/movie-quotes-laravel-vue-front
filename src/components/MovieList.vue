@@ -67,7 +67,7 @@
 import IconSearch from "./icons/IconSearch.vue";
 import IconPlus from "./icons/IconPlus.vue";
 import IconCommentNotificationVue from "./icons/IconCommentNotification.vue";
-import AddMovieModal from "./AddMovieModal.vue";
+import AddMovieModal from "./Modals/AddMovieModal.vue";
 import { onMounted, ref } from "vue";
 import axiosInstance from "../config/axios/index";
 import { useI18n } from "vue-i18n";

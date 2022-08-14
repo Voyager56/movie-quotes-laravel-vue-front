@@ -4,8 +4,8 @@ import NavBar from "../components/NavBar.vue";
 import EmailSent from "../components/EmailSent.vue";
 import userStore from "../store/index";
 import { storeToRefs } from "pinia";
-import LoginModal from "../components/LoginModal.vue";
-import RegistrationModal from "../components/RegistrationModal.vue";
+import LoginModal from "../components/Modals/LoginModal.vue";
+import RegistrationModal from "../components/Modals/RegistrationModal.vue";
 import { useRoute } from "vue-router";
 
 const dropDown = ref(false);

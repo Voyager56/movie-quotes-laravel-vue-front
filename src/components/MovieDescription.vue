@@ -85,7 +85,7 @@ import axiosInstance from "../config/axios";
 import { useI18n } from "vue-i18n";
 import IconLoading from "./icons/IconLoading.vue";
 import IconPlus from "./icons/IconPlus.vue";
-import AddQuote from "./AddQuote.vue";
+import AddQuote from "./Modals/AddQuote.vue";
 import QuoteCard from "./QuoteCard.vue";
 import IconBin from "./icons/IconBin.vue";
 import IconPen from "./icons/IconPen.vue";

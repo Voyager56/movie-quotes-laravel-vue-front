@@ -135,7 +135,7 @@ import IconComment from "./icons/IconComment.vue";
 import IconLike from "./icons/IconLike.vue";
 import IconWriteMovie from "./icons/IconWriteMovie.vue";
 import IconSearch from "./icons/IconSearch.vue";
-import AddQuote from "./AddQuote.vue";
+import AddQuote from "./Modals/AddQuote.vue";
 
 const store = userStore();
 const { user } = storeToRefs(store);
